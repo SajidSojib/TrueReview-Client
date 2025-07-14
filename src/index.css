@@ -1,2 +1,37 @@
 @import "tailwindcss";
-@plugin "daisyui";
+@plugin "daisyui" {
+    themes: light --default, dark --prefersdark;
+  }
+  @plugin "daisyui/theme" {
+    name: "light";
+    default:true;
+    --color-primary: #6e56cf;
+    --color-secondary: #e4dfff;
+    --color-accent: #d8e6ff;
+    --color-base: #2a2a4a;
+    --color-error: #f5f5ff;  
+    --color-warning: #e4dfff
+  }
+  /* 
+      error = theme
+      base = text
+      warning = nav bg
+   */
+  @plugin "daisyui/theme" {
+    name: "dark";
+    prefersdark:true;
+    --color-primary: #a48fff;
+    --color-secondary: #2d2b55;
+    --color-accent: #303060;
+    --color-base: #0f0f1a;
+    --color-error: #0f0f1a;
+    --color-warning: #1a1a2e
+  }
+
+  @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Hind+Siliguri:wght@300;400;500;600;700&family=Oswald:wght@200..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Sora:wght@100..800&family=Winky+Rough:ital,wght@0,300..900;1,300..900&display=swap');
+
+  .poppins-regular {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }

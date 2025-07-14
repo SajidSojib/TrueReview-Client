@@ -1,16 +1,23 @@
-import React from 'react';
-import Navbar from '../Components/Navbar';
-import { Outlet } from 'react-router';
-import Footer from '../Components/Footer';
-
+import React from "react";
+import Navbar from "../Components/Navbar";
+import { Outlet } from "react-router";
+import Footer from "../Components/Footer";
+import AOS from "aos";
+import "aos/dist/aos.css";
 const Root = () => {
-    return (
-        <div>
-            <Navbar></Navbar>
-            <Outlet></Outlet>
-            <Footer></Footer>
-        </div>
-    );
+  AOS.init();
+
+  return (
+    <div className="overflow-x-hidden min-h-screen bg-error">
+      <header className="bg-warning">
+        <Navbar></Navbar>
+      </header>
+      <div className="min-h-[calc(100vh-463px)] bg-white">
+        <Outlet></Outlet>
+      </div>
+      <Footer></Footer>
+    </div>
+  );
 };
 
 export default Root;
