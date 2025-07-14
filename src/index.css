@@ -9,6 +9,7 @@
     --color-secondary: #e4dfff;
     --color-accent: #d8e6ff;
     --color-base: #2a2a4a;
+    --color-base-200: #6c6c8a;
     --color-error: #f5f5ff;  
     --color-warning: #e4dfff
   }
@@ -24,6 +25,7 @@
     --color-secondary: #2d2b55;
     --color-accent: #303060;
     --color-base: #0f0f1a;
+    --color-base-200: #6c6c8a;
     --color-error: #0f0f1a;
     --color-warning: #1a1a2e
   }

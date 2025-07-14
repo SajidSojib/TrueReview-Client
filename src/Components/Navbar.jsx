@@ -163,7 +163,7 @@ const Navbar = () => {
           to={"/login"}
           aria-label="Login"
           title="Login"
-          className="hidden lg:block btn btn-outline text-base border-primary"
+          className="hidden lg:flex btn btn-outline text-base border-primary"
         >
           Login
         </Link>
@@ -173,7 +173,7 @@ const Navbar = () => {
           to={"/register"}
           aria-label="Register"
           title="Register"
-          className="hidden lg:blockbtn btn-primary text-base-300"
+          className="hidden lg:flex btn btn-primary text-base-300"
         >
           Register
         </Link>
@@ -251,11 +251,11 @@ const Navbar = () => {
               initial={{ opacity: 0 }}
               className="absolute right-0 overflow-y-visible top-10"
             >
-              <div className="h-full p-3 space-y-2 w-60 bg-secondary rounded-md">
+              <div className="h-full p-3 space-y-2 w-60 bg-accent rounded-md">
                 <div className="flex items-center p-2 space-x-4">
-                  <div class="relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
+                  <div className="relative w-10 h-10 overflow-hidden bg-gray-200 rounded-full">
                     <svg
-                      class="absolute w-12 h-12 text-gray-400 -left-1"
+                      className="absolute w-12 h-12 text-gray-400 -left-1"
                       fill="currentColor"
                       viewBox="0 0 20 20"
                       xmlns="http://www.w3.org/2000/svg"

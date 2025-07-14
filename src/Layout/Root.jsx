@@ -12,7 +12,7 @@ const Root = () => {
       <header className="bg-warning">
         <Navbar></Navbar>
       </header>
-      <div className="min-h-[calc(100vh-463px)] bg-white">
+      <div className="min-h-[calc(100vh-488px)]">
         <Outlet></Outlet>
       </div>
       <Footer></Footer>
