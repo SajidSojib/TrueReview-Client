@@ -7,19 +7,10 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import "swiper/css/effect-creative";
-import { EffectCreative } from "swiper/modules";
 import { Link } from "react-router";
 
-const Hero = ({ slideData, loading1 }) => {
-  if (loading1) {
-    return (
-      <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
-        <div className="flex items-center justify-center mt-20">
-          <span className="loading loading-dots loading-xl"></span>
-        </div>
-      </div>
-    );
-  }
+const Hero = ({ slideData }) => {
+  
 
   return (
     <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20 rounded-2xl ">
