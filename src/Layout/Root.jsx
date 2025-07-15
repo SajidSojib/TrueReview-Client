@@ -7,7 +7,7 @@ import "aos/dist/aos.css";
 const Root = () => {
   AOS.init();
   const navigation = useNavigation();
-  const loading = navigation.state === "loading";
+  const load = navigation.state === "loading";
 
   return (
     <div className="overflow-x-hidden min-h-screen bg-error">
@@ -15,7 +15,7 @@ const Root = () => {
         <Navbar></Navbar>
       </header>
 
-      {loading ? (
+      {(load) ? (
         <div className="flex items-center justify-center h-screen">
           <span className="loading loading-spinner loading-xl"></span>
         </div>

@@ -1,4 +1,4 @@
-import React, { use } from "react";
+import React, { useContext } from "react";
 import { useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../../Firebase/AuthProvider";
 import Swal from "sweetalert2";
@@ -8,12 +8,13 @@ const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
   
-  const { signInUser } = use(AuthContext);
+  const { signInUser } = useContext(AuthContext);
   const handleSubmit = (e) => {
     e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
     signInUser(email, password)
+      // eslint-disable-next-line no-unused-vars
       .then((result) => {
         Swal.fire({
           title: "User Created Successfully",
@@ -31,7 +32,7 @@ const Login = () => {
       });
   };
   return (
-    <div>
+    <div data-aos="zoom-in-up">
       <div className="relative mx-auto max-w-md px-8 pt-10 pb-8 mt-10 bg-info text-base-300 rounded-xl shadow-2xl p-7 sm:p-10">
         <h3 className="mb-4 text-xl font-semibold sm:text-center sm:mb-6 sm:text-2xl">
           Login Now

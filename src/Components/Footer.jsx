@@ -1,13 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link, NavLink } from 'react-router';
+import { AuthContext } from '../Firebase/AuthProvider';
 
 const Footer = () => {
-    const user={}
+    const {user} = useContext(AuthContext);
     const links = (
         <>
           <li
             data-aos="fade-down"
-            data-aos-duration="400"
+            data-aos-duration="500"
             data-aos-easing="ease-in-out"
             data-aos-once="true"
           >
@@ -26,7 +27,7 @@ const Footer = () => {
           </li>
           <li
             data-aos="fade-down"
-            data-aos-duration="600"
+            data-aos-duration="700"
             data-aos-easing="ease-in-out"
             data-aos-once="true"
           >
@@ -48,7 +49,7 @@ const Footer = () => {
             <>
               <li
                 data-aos="fade-down"
-                data-aos-duration="800"
+                data-aos-duration="900"
                 data-aos-easing="ease-in-out"
                 data-aos-once="true"
               >
@@ -67,7 +68,7 @@ const Footer = () => {
               </li>
               <li
                 data-aos="fade-down"
-                data-aos-duration="1000"
+                data-aos-duration="1100"
                 data-aos-easing="ease-in-out"
                 data-aos-once="true"
               >
@@ -86,7 +87,7 @@ const Footer = () => {
               </li>
               <li
                 data-aos="fade-down"
-                data-aos-duration="1200"
+                data-aos-duration="1300"
                 data-aos-easing="ease-in-out"
                 data-aos-once="true"
               >
@@ -108,7 +109,7 @@ const Footer = () => {
         </>
       );
     return (
-      <div className="relative mt-16 bg-warning">
+      <div data-aos="fade-up" data-aos-anchor-placement="top-bottom" data-aos-duration="1300" className="relative mt-16 bg-warning z-30">
         <svg
           className="absolute top-0 w-full h-6 -mt-5 sm:-mt-10 sm:h-16 text-warning"
           preserveAspectRatio="none"
@@ -146,11 +147,10 @@ const Footer = () => {
                 <p className="font-semibold text-lg tracking-wide text-teal-accent-400">
                   Navigations
                 </p>
-                <ul className="mt-2 space-y-1">
+                <ul className="mt-2 space-y-1 overflow-auto max-h-fit">
                   {links}
                 </ul>
               </div>
-
 
               <div>
                 <p className="font-semibold tracking-wide text-lg text-teal-accent-400">

@@ -52,10 +52,10 @@ const Register = () => {
     
   };
   return (
-    <div>
+    <div data-aos="zoom-in-up">
       <div className="relative mx-auto max-w-md px-8 pt-10 pb-8 mt-10 bg-info text-base-300 rounded-xl shadow-2xl p-7 sm:p-10">
         <h3 className="mb-4 text-xl font-semibold sm:text-center sm:mb-6 sm:text-2xl">
-          Login Now
+          Register Now
         </h3>
         <form onSubmit={handleSubmit}>
           <div className="mb-1 sm:mb-2">
@@ -120,7 +120,7 @@ const Register = () => {
           <p className="text-xs text-base-200 sm:text-sm">
             Already have an account?{" "}
             <span
-              onClick={() => navigate("/register")}
+              onClick={() => navigate("/login")}
               className="cursor-pointer link-hover text-primary"
             >
               Login Here
