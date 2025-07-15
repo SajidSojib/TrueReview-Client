@@ -1,20 +1,29 @@
 import React from "react";
 import Navbar from "../Components/Navbar";
-import { Outlet } from "react-router";
+import { Outlet, useNavigation } from "react-router";
 import Footer from "../Components/Footer";
 import AOS from "aos";
 import "aos/dist/aos.css";
 const Root = () => {
   AOS.init();
+  const navigation = useNavigation();
+  const loading = navigation.state === "loading";
 
   return (
     <div className="overflow-x-hidden min-h-screen bg-error">
       <header className="bg-warning">
         <Navbar></Navbar>
       </header>
-      <div className="min-h-[calc(100vh-488px)]">
+
+      {loading ? (
+        <div className="flex items-center justify-center h-screen">
+          <span className="loading loading-spinner loading-xl"></span>
+        </div>
+      ) : (
+        <div className="min-h-[calc(100vh-488px)]">
         <Outlet></Outlet>
-      </div>
+      </div> 
+      )}
       <Footer></Footer>
     </div>
   );

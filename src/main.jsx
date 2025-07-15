@@ -7,6 +7,8 @@ import Root from "./Layout/Root";
 import Services from "./Pages/Services/Services";
 import Login from "./Pages/Authentication/Login";
 import Register from "./Pages/Authentication/Register";
+import AuthProvider from "./Firebase/AuthProvider";
+import { ToastContainer } from "react-toastify";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +30,9 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <RouterProvider router={router}></RouterProvider>
+    <AuthProvider>
+      <RouterProvider router={router}></RouterProvider>
+      <ToastContainer></ToastContainer>
+    </AuthProvider>
   </StrictMode>
 );
