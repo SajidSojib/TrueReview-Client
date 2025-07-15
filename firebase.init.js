@@ -5,12 +5,12 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyAgUsEVD9tgFt5jtMW-MY4a_iemywvhDNU",
-  authDomain: "true-review-3d3e3.firebaseapp.com",
-  projectId: "true-review-3d3e3",
-  storageBucket: "true-review-3d3e3.firebasestorage.app",
-  messagingSenderId: "720489881109",
-  appId: "1:720489881109:web:3a3fbc95f085ed2dfb381c",
+  apiKey: import.meta.env.VITE_apiKey,
+  authDomain: import.meta.env.VITE_authDomain,
+  projectId: import.meta.env.VITE_projectId,
+  storageBucket: import.meta.env.VITE_storageBucket,
+  messagingSenderId: import.meta.env.VITE_messagingSenderId,
+  appId: import.meta.env.VITE_appId,
 };
 
 // Initialize Firebase
