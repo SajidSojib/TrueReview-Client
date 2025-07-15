@@ -16,16 +16,18 @@ const Login = () => {
     signInUser(email, password)
       .then((result) => {
         Swal.fire({
-          position: "top-end",
+          title: "User Created Successfully",
+          text: "Login Successfully",
           icon: "success",
-          title: "Login Successfully",
-          showConfirmButton: false,
-          timer: 1500,
-        })
+          confirmButtonText: "Ok",
+        });
         navigate(location.state || "/");
       })
       .catch((err) => {
-        toast.error(err.message.split("/")[1].split(")")[0]);
+        toast.error(
+          err.message.split("/")[1].split(")")[0] +
+            ` : "please provide valid email and password"`
+        );
       });
   };
   return (
