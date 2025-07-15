@@ -55,7 +55,7 @@ const AuthProvider = ({ children }) => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
       if (currentUser?.email) {
-        localStorage.setItem("login", "true");
+        // localStorage.setItem("login", "true");
         setNavbarLoading(true);
         setLoading(false);
       } else {

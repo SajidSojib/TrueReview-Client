@@ -1,0 +1,34 @@
+[
+  {
+    "id": 1,
+    "route": "/services",
+    "title": "Explore All Services",
+    "subtitle": "Browse through a diverse collection of services shared and reviewed by real users to help you find exactly what you’re looking for.",
+    "buttonText": "View All Services",
+    "image": "https://i.ibb.co/1Y1ggqtC/services1-Large.jpg"
+  },
+  {
+    "id": 2,
+    "route": "/addService",
+    "title": "Share Your Service",
+    "subtitle": "Have something valuable to offer? Add your own service to our platform and connect with users who need what you provide.",
+    "buttonText": "Add Your Service",
+    "image": "https://i.ibb.co/gL9k1zpX/services2-Large.jpg"
+  },
+  {
+    "id": 3,
+    "route": "/myServices",
+    "title": "Manage Your Listings",
+    "subtitle": "Easily keep track of the services you’ve listed. Edit details, respond to feedback, and stay on top of your offerings.",
+    "buttonText": "My Services",
+    "image": "https://i.ibb.co/LDd0Rw4x/service3-Large.jpg"
+  },
+  {
+    "id": 4,
+    "route": "/myReviews",
+    "title": "Your Feedback Matters",
+    "subtitle": "Check back on the reviews you’ve left, make updates if needed, and ensure your voice continues to guide others toward the right choices.",
+    "buttonText": "My Reviews",
+    "image": "https://i.ibb.co/tjGFH1y/services4-Large.jpg"
+  }
+]
