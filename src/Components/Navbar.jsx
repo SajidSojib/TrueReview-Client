@@ -173,7 +173,7 @@ const Navbar = () => {
           to={"/register"}
           aria-label="Register"
           title="Register"
-          className="hidden lg:flex btn btn-primary text-base-300"
+          className="hidden lg:flex btn btn-primary text-error"
         >
           Register
         </Link>
