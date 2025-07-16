@@ -32,7 +32,7 @@ const Partners = ({partnerData}) => {
                   </p>
                 </div>
                 <div className='flex justify-between items-center'>
-                  <p className="px-3 py-1 bg-primary text-white text-xs rounded-full">
+                  <p className="px-3 py-1 bg-primary text-error text-xs rounded-full">
                     {partner.category}
                   </p>
                   <Link

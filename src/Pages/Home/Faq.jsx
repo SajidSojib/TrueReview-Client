@@ -1,7 +1,6 @@
 import React from "react";
 import Lottie from "lottie-react";
 import faqLottie from "../../assets/faq-lottie.json";
-import { motion } from "framer-motion";
 const Faq = ({ questions }) => {
   console.log(questions);
   return (
@@ -14,7 +13,7 @@ const Faq = ({ questions }) => {
         <div data-aos="fade-right" data-aos-once="true" data-aos-duration="500" className="flex-7/12">
           <Lottie animationData={faqLottie} loop={true} />
         </div>
-        <div className="space-y-4">
+        <div className="space-y-3">
           {questions?.map((q) => (
             <div
               data-aos="fade-down"

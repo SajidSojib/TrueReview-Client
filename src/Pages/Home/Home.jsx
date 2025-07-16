@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Hero from './Hero';
 import Partners from './Partners';
 import Faq from './Faq';
+import Contact from './Contact';
 
 const Home = () => {
     const [slideData, setSlideData] = useState([]);
@@ -54,6 +55,7 @@ const Home = () => {
         <Hero slideData={slideData}></Hero>
         <Partners partnerData={partnerData}></Partners>
         <Faq questions={faqData}></Faq>
+        <Contact></Contact>
       </div>
     );
 };
