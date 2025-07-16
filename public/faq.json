@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "question": "What is TrueReview?",
+    "answer": "TrueReview is a platform where users can explore, add, and review various services, helping others make informed decisions based on honest feedback."
+  },
+  {
+    "id": 2,
+    "question": "How can I add my service to TrueReview?",
+    "answer": "After signing in, you can navigate to the 'Add Service' section from the navigation menu and submit your service details for others to discover."
+  },
+  {
+    "id": 3,
+    "question": "Can I edit or delete a review I submitted?",
+    "answer": "Absolutely. Go to the 'My Reviews' section after logging in, where you can manage your existing feedback."
+  },
+  {
+    "id": 4,
+    "question": "Are the reviews verified?",
+    "answer": "While we do not moderate every review manually, only logged-in users can post reviews, helping maintain authenticity and accountability."
+  },
+  {
+    "id": 5,
+    "question": "What type of services can be listed?",
+    "answer": "You can list any legal and ethical service — including tech, creative, consulting, or local businesses — as long as it follows our community guidelines."
+  },
+  {
+    "id": 6,
+    "question": "How can I contact support?",
+    "answer": "You can reach out to us through the Contact section below or email us at support@truereview.com for any assistance."
+  }
+]

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Hero from './Hero';
 import Partners from './Partners';
+import Faq from './Faq';
 
 const Home = () => {
     const [slideData, setSlideData] = useState([]);
@@ -27,7 +28,19 @@ const Home = () => {
             })
     }, [])
 
-    if (loading1 || loading2) {
+    const [faqData, setFaqData] = useState([]);
+    const [loading3, setLoading3] = useState(true);
+
+    useEffect(() => {
+        fetch('/faq.json')
+            .then(res => res.json())
+            .then(data => {
+                setFaqData(data);
+                setLoading3(false);
+            })
+    }, [])
+
+    if (loading1 || loading2 || loading3) {
       return (
         <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
           <div className="flex items-center justify-center mt-20">
@@ -37,10 +50,11 @@ const Home = () => {
       );
     }
     return (
-        <div>
-            <Hero slideData={slideData}></Hero>
-            <Partners partnerData={partnerData}></Partners>
-        </div>
+      <div>
+        <Hero slideData={slideData}></Hero>
+        <Partners partnerData={partnerData}></Partners>
+        <Faq questions={faqData}></Faq>
+      </div>
     );
 };
 

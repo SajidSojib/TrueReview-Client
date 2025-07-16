@@ -7,23 +7,24 @@ const Partners = ({partnerData}) => {
         <h2 className="text-3xl text-center font-bold mb-4 text-base-300">
           Meet Our Partners
         </h2>
-        <p className="mb-8 w-3/4 mx-auto text-center text-base-200">
+        <p className="mb-2 w-3/4 mx-auto text-center text-base-200">
           Our trusted collaborators helping power the TrueReview experience.
         </p>
         <div>
           <Marquee
             play={1}
-            speed={60}
+            speed={70}
+            className='py-8'
             pauseOnHover={false}
             loop={0}
           >
             {partnerData?.map((partner) => (
-              <div className="bg-info mr-10 w-96 shadow-xl rounded-2xl overflow-hidden hover:shadow-2xl transition duration-300 p-6 group h-full flex flex-col justify-between">
+              <div className="bg-info mr-10 shadow-lg hover:scale-105 duration-300 w-96  rounded-2xl overflow-hidden hover:shadow-xl transition p-6 group h-full flex flex-col justify-between">
                 <div>
                   <img
                     src={partner.logo}
                     alt={partner.name}
-                    className="h-16 mx-auto mb-4 group-hover:scale-110 transition-transform duration-300"
+                    className="h-16 mx-auto mb-4 duration-300"
                   />
                   <h3 className="text-xl text-center text-base-300 font-semibold mb-2">{partner.name}</h3>
                   <p className="text-sm text-center text-base-200 mb-4">
