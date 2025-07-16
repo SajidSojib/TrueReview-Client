@@ -11,16 +11,16 @@ const Root = () => {
 
   return (
     <div className="overflow-x-hidden min-h-screen bg-error">
-      <header className="bg-warning">
+      <header className="bg-warning fixed w-full z-50 top-0">
         <Navbar></Navbar>
       </header>
 
       {(load) ? (
-        <div className="flex items-center justify-center h-screen">
+        <div className="flex items-center justify-center min-h-[calc(100vh-400px)]">
           <span className="loading loading-spinner loading-xl"></span>
         </div>
       ) : (
-        <div className="min-h-[calc(100vh-488px)]">
+        <div className="min-h-[calc(100vh-400px)]">
         <Outlet></Outlet>
       </div> 
       )}

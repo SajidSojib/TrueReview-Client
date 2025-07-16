@@ -17,6 +17,7 @@ const Faq = ({ questions }) => {
           {questions?.map((q) => (
             <div
               data-aos="fade-down"
+              data-aos-delay="100"
               data-aos-easing="ease-in-out"
               data-aos-duration={ q.id * 200}
               key={q.id}

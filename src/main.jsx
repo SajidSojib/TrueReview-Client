@@ -9,6 +9,10 @@ import Login from "./Pages/Authentication/Login";
 import Register from "./Pages/Authentication/Register";
 import AuthProvider from "./Firebase/AuthProvider";
 import { ToastContainer } from "react-toastify";
+import MyServices from "./Pages/MyServices/MyServices";
+import MyReviews from "./Pages/MyReviews/MyReviews";
+import AddService from "./Pages/AddService/AddService";
+import PrivateRoute from "./Firebase/PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -17,6 +21,30 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <Home></Home> },
       { path: "/services", element: <Services></Services> },
+      {
+        path: "/addService",
+        element: (
+          <PrivateRoute>
+            <AddService></AddService>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/myServices",
+        element: (
+          <PrivateRoute>
+            <MyServices></MyServices>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/myReviews",
+        element: (
+          <PrivateRoute>
+            <MyReviews></MyReviews>
+          </PrivateRoute>
+        ),
+      },
       { path: "/login", element: <Login></Login> },
       { path: "/register", element: <Register></Register> },
     ],
@@ -24,7 +52,13 @@ const router = createBrowserRouter([
 
   {
     path: "*",
-    element: <div><Link className="btn" to="/">go back</Link></div>,
+    element: (
+      <div>
+        <Link className="btn" to="/">
+          go back
+        </Link>
+      </div>
+    ),
   },
 ]);
 

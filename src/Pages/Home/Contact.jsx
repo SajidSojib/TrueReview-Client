@@ -28,13 +28,17 @@ const Contact = () => {
             >
               <div>
                 <h1 className="text-3xl font-bold">Get in touch</h1>
-                <p className="pt-2 pb-4">
-                  Fill in the form to connect with us
-                </p>
+                <p className="pt-2 pb-4">Fill in the form to connect with us</p>
               </div>
               <label className="block">
                 <span className="mb-1 text-base-300">Full name</span>
-                <label className="input input-primary border-none bg-info w-full">
+                <label
+                  data-aos="fade-down"
+                  data-aos-delay="100"
+                  data-aos-duration="400"
+                  data-aos-easing="ease-in-out"
+                  className="input input-primary border-none shadow-md shadow-accent bg-info w-full"
+                >
                   <svg
                     className="h-[1em] opacity-50"
                     xmlns="http://www.w3.org/2000/svg"
@@ -62,9 +66,15 @@ const Contact = () => {
                   />
                 </label>
               </label>
-              <label className="block">
+              <label
+                data-aos-delay="100"
+                data-aos="fade-down"
+                data-aos-duration="600"
+                data-aos-easing="ease-in-out"
+                className="block"
+              >
                 <span className="mb-1">Email address</span>
-                <label className="input input-primary border-none bg-info w-full validator">
+                <label className="input shadow-md shadow-accent input-primary border-none bg-info w-full validator">
                   <svg
                     className="h-[1em] opacity-50"
                     xmlns="http://www.w3.org/2000/svg"
@@ -84,15 +94,25 @@ const Contact = () => {
                   <input type="email" placeholder="Enter Email" required />
                 </label>
               </label>
-              <label className="block">
+              <label
+                data-aos-delay="100"
+                data-aos="fade-down"
+                data-aos-duration="800"
+                data-aos-easing="ease-in-out"
+                className="block"
+              >
                 <span className="mb-1">Message</span>
                 <textarea
                   rows="3"
-                  className="block w-full rounded-md shadow-sm textarea border-none textarea-primary bg-info py-2 px-3"
+                  className="block w-full rounded-md shadow-md shadow-accent textarea border-none textarea-primary bg-info py-2 px-3"
                   placeholder="Your message"
                 ></textarea>
               </label>
               <button
+                data-aos="fade-down"
+                data-aos-delay="100"
+                data-aos-duration="1000"
+                data-aos-easing="ease-in-out"
                 type="submit"
                 className="self-center px-8 py-3 text-lg rounded focus:ring hover:ring focus:ring-opacity-75 text-error btn btn-primary focus:dark:ring-violet-600 hover:dark:ring-violet-600"
               >
