@@ -10,7 +10,7 @@ const Root = () => {
   const load = navigation.state === "loading";
 
   return (
-    <div className="overflow-x-hidden min-h-screen bg-error">
+    <div className="overflow-x-hidden xl:overflow-visible min-h-screen bg-error">
       <header className="bg-warning fixed w-full z-50 top-0">
         <Navbar></Navbar>
       </header>

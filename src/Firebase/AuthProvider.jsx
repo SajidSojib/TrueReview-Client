@@ -16,7 +16,6 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [navbarLoading, setNavbarLoading] = useState(true);
   const [loading, setLoading] = useState(true);
-  console.log(loading);
 
   const signInUser = (email, password) => {
     setLoading(true);

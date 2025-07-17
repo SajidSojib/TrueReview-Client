@@ -28,9 +28,9 @@ const AddService = () => {
       });
   };
   return (
-    <div className="px-4 mt-20 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
+    <div className="px-4 py-16 mt-12 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
       <form onSubmit={handleSubmit}>
-        <div className="mt-14 card-body bg-info w-full max-w-4xl mx-auto mb-24 shrink-0 shadow-accent shadow-xl pt-12 p-6 md:p-12 sm:transform sm:scale-105 rounded-3xl">
+        <div className=" card-body bg-info w-full max-w-4xl mx-auto mb-10 shrink-0 shadow-accent shadow-xl pt-12 p-6 md:p-12 sm:transform sm:scale-105 rounded-3xl">
           <h1 className="text-3xl font-bold text-center text-base-300">
             Add a New Service
           </h1>

@@ -3,13 +3,13 @@ import { RiMoneyDollarCircleFill } from "react-icons/ri";
 import { FcCalendar } from "react-icons/fc";
 import { Link } from 'react-router';
 // eslint-disable-next-line no-unused-vars
-import { motion } from "framer-motion";
+import { easeInOut, motion } from "framer-motion";
 const Service = ({service, index}) => {
     return (
       <motion.div
         initial={{ scale: 0.5, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
-        transition={{ duration: (index + 1) * 0.1, delay: (index + 1) * 0.1 }}
+        transition={{ duration: (index + 1) * 0.1, delay: (index + 1) * 0.1, ease: easeInOut }}
       >
         <div className="card border-2 border-accent bg-info shadow-sm hover:shadow-lg shadow-accent">
           <figure>
