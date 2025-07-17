@@ -16,11 +16,9 @@ const AddService = () => {
       month: "long",
       year: "numeric",
     });
-    console.log(newService);
     
     axios.post("http://localhost:9000/services", newService)
       .then(res => {
-        console.log(res.data);
         if(res.data.insertedId){
           alert('Service added successfully');
         }

@@ -13,6 +13,7 @@ import MyServices from "./Pages/MyServices/MyServices";
 import MyReviews from "./Pages/MyReviews/MyReviews";
 import AddService from "./Pages/AddService/AddService";
 import PrivateRoute from "./Firebase/PrivateRoute";
+import Details from "./Pages/Services/Details";
 
 const router = createBrowserRouter([
   {
@@ -45,6 +46,15 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
+      {
+        path: "/services/:id",
+        element: (
+          <PrivateRoute>
+            <Details></Details>
+          </PrivateRoute>
+        ),
+      },
+
       { path: "/login", element: <Login></Login> },
       { path: "/register", element: <Register></Register> },
     ],

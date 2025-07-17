@@ -12,7 +12,8 @@
     --color-base-200: #6c6c8a;
     --color-error: #f5f5ff;  
     --color-warning: #e4dfff;
-    --color-info: #ffffff
+    --color-info: #ffffff;
+    --color-success: #6e56cf
   }
   /* 
       error = theme
@@ -30,7 +31,9 @@
     --color-base-200: #9898a5;
     --color-error: #0f0f1a;
     --color-warning: #1a1a2e;
-    --color-info: #1a1a2e
+    --color-info: #1a1a2e;
+    --color-success: #6e56cf
+
   }
 
   @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Hind+Siliguri:wght@300;400;500;600;700&family=Oswald:wght@200..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Sora:wght@100..800&family=Winky+Rough:ital,wght@0,300..900;1,300..900&display=swap');
