@@ -1,62 +1,78 @@
-import React, { useEffect, useState } from 'react';
-import Hero from './Hero';
-import Partners from './Partners';
-import Faq from './Faq';
-import Contact from './Contact';
+import React, { useEffect, useState } from "react";
+import Hero from "./Hero";
+import Partners from "./Partners";
+import Faq from "./Faq";
+import Contact from "./Contact";
+import Feature from "./Feature";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 const Home = () => {
-    const [slideData, setSlideData] = useState([]);
-    const [loading1, setLoading1] = useState(true);
+  const [slideData, setSlideData] = useState([]);
+  const [loading1, setLoading1] = useState(true);
 
-    useEffect(() => {
-        fetch('/hero.json')
-            .then(res => res.json())
-            .then(data => {
-                setSlideData(data);
-                setLoading1(false);
-            })
-    }, [])
+  useEffect(() => {
+    fetch("/hero.json")
+      .then((res) => res.json())
+      .then((data) => {
+        setSlideData(data);
+        setLoading1(false);
+      });
+  }, []);
 
-    const [partnerData, setPartnerData] = useState([]);
-    const [loading2, setLoading2] = useState(true);
+  const [partnerData, setPartnerData] = useState([]);
+  const [loading2, setLoading2] = useState(true);
 
-    useEffect(() => {
-        fetch('/partner.json')
-            .then(res => res.json())
-            .then(data => {
-                setPartnerData(data);
-                setLoading2(false);
-            })
-    }, [])
+  useEffect(() => {
+    fetch("/partner.json")
+      .then((res) => res.json())
+      .then((data) => {
+        setPartnerData(data);
+        setLoading2(false);
+      });
+  }, []);
 
-    const [faqData, setFaqData] = useState([]);
-    const [loading3, setLoading3] = useState(true);
+  const [faqData, setFaqData] = useState([]);
+  const [loading3, setLoading3] = useState(true);
 
-    useEffect(() => {
-        fetch('/faq.json')
-            .then(res => res.json())
-            .then(data => {
-                setFaqData(data);
-                setLoading3(false);
-            })
-    }, [])
+  useEffect(() => {
+    fetch("/faq.json")
+      .then((res) => res.json())
+      .then((data) => {
+        setFaqData(data);
+        setLoading3(false);
+      });
+  }, []);
 
-    if (loading1 || loading2 || loading3) {
-      return (
-        
-          <div className="flex items-center justify-center min-h-[calc(100vh-400px)]">
-            <span className="loading loading-dots loading-xl"></span>
-          </div>
-      );
-    }
+  const [services, setServices] = useState([]);
+  const [loading4, setLoading4] = useState(true);
+
+  useEffect(() => {
+    axios.get("http://localhost:9000/limitedServices").then((res) => {
+      setServices(res.data);
+      setLoading4(false);
+    })
+      .catch((err) => {
+        toast.error(err);
+      });
+  }, []);
+
+  if (loading1 || loading2 || loading3, loading4) {
     return (
-      <div>
-        <Hero slideData={slideData}></Hero>
-        <Partners partnerData={partnerData}></Partners>
-        <Faq questions={faqData}></Faq>
-        <Contact></Contact>
+      <div className="flex items-center justify-center min-h-[calc(100vh-400px)]">
+        <span className="loading loading-dots loading-xl"></span>
       </div>
     );
+  }
+  return (
+    <div>
+      <Hero slideData={slideData}></Hero>
+      <Feature services={services}></Feature>
+      <Partners partnerData={partnerData}></Partners>
+      <Faq questions={faqData}></Faq>
+      <Contact></Contact>
+    </div>
+  );
 };
 
 export default Home;
