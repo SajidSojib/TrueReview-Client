@@ -1,108 +1,90 @@
-import React from 'react';
+import React, { useContext, useState } from "react";
+import { AuthContext } from "../../Firebase/AuthProvider";
+import { Rating } from "@smastrom/react-rating";
+import axios from "axios";
+import Swal from "sweetalert2";
 
-const UpdateReview = () => {
-    return (
-      <form onSubmit>
-        <div className=" card-body bg-info w-full max-w-4xl mx-auto mb-10 shrink-0 shadow-accent shadow-xl pt-12 p-6 md:p-12 sm:transform sm:scale-105 rounded-3xl">
+const updatedReview = ({ reviews, setReviews, updatedReview }) => {
+  const { user } = useContext(AuthContext);
+  const [star, setStar] = useState(updatedReview?.rating);
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const rating = star;
+    const review = event.target.review.value;
+
+    axios
+      .patch(`http://localhost:9000/reviews/${updatedReview._id}`, {
+        rating,
+        review,
+      })
+      .then((res) => {
+        if (res.data.modifiedCount > 0) {
+          updatedReview.rating = star;
+          updatedReview.review = review;
+          setReviews(
+            reviews.map((s) =>
+              s._id === updatedReview._id ? updatedReview : s
+            )
+          );
+
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Service updated successfully",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+
+          const modal = document.getElementById("my_modal_3");
+          if (modal) {
+            modal.close();
+          }
+        }
+      })
+      .catch((err) => {
+        alert(err);
+      });
+  };
+  return (
+    <div className="">
+      <form className="modal-action m-0 block" onSubmit={handleSubmit}>
+        <div className=" card-body bg-info w-full max-w-2xl mx-auto shrink-0 shadow-accent pt-12 p-6 md:p-12 sm:transform sm:scale-105 rounded-3xl m-0">
           <h1 className="text-3xl font-bold text-center text-base-300">
-            Add a New Service
+            Update Your Review
           </h1>
-          <p className=" lg:w-3/4 mx-auto mt-3 mb-6 md:mb-6 text-center text-base-200">
-            Share your service with the community. Fill out the details below to
-            list your service and help users discover what you offer.
-          </p>
-          <fieldset className="fieldset space-y-2 md:space-y-1 grid gap-4 mb-4 md:grid-cols-2">
+          <fieldset className="fieldset space-y-2 md:space-y-1 grid gap-4 md:grid-cols-2">
             <div className="flex flex-col gap-0.5">
               <label className="label text-base-300">Service Title</label>
               <input
-                name="title"
+                name="serviceTitle"
                 type="text"
                 className="input input-primary shadow-sm shadow-primary border-none placeholder:text-base-200 bg-error w-full"
                 placeholder="Add a title"
+                value={updatedReview?.serviceTitle}
+                readOnly
                 required
               />
             </div>
 
             <div className="flex flex-col gap-0.5">
-              <label className="label text-base-300">Service Photo</label>
-              <input
-                name="photo"
-                type="url"
-                className="input input-primary shadow-sm shadow-primary border-none placeholder:text-base-200 bg-error w-full"
-                placeholder="Photo URL"
-                required
-              />
-            </div>
-
-            <div className="flex flex-col gap-0.5">
-              <label className="label text-base-300">Service Category</label>
-              <select
-                name="category"
-                defaultValue="Select Category"
-                className="select w-full select-primary border-none bg-error shadow-sm shadow-primary placeholder:text-base-200"
-              >
-                <option disabled={true}>Select Category</option>
-                <option value="Technology">Technology</option>
-                <option value="Design">Design</option>
-                <option value="Education">Education</option>
-                <option value="Finance">Finance</option>
-                <option value="Marketing">Marketing</option>
-                <option value="Healthcare">Healthcare</option>
-                <option value="Legal Services">Legal Services</option>
-                <option value="Writing">Writing</option>
-                <option value="Home Services">Home Services</option>
-                <option value="Events & Entertainment">
-                  Events & Entertainment
-                </option>
-                <option value="Travel & Hospitality">
-                  Travel & Hospitality
-                </option>
-                <option value="Business Consulting">Business Consulting</option>
-                <option value="Freelance">Freelance</option>
-                <option value="Others">Others</option>
-              </select>
-            </div>
-
-            <div className="flex flex-col gap-0.5">
-              <label className="label text-base-300">Price</label>
-              <input
-                name="price"
-                type="text"
-                className="input w-full input-primary border-none bg-error shadow-sm shadow-primary placeholder:text-base-200"
-                placeholder="Enter Price($)"
-                required
-              />
-            </div>
-
-            <div className="flex flex-col gap-0.5">
-              <label className="label text-base-300">Company Name</label>
-              <input
-                name="compay"
-                type="text"
-                className="input w-full border-none bg-error shadow-sm shadow-primary placeholder:text-base-200 input-primary"
-                placeholder="Enter Company Name"
-                required
-              />
-            </div>
-
-            <div className="flex flex-col gap-0.5">
-              <label className="label text-base-300">Company Website</label>
-              <input
-                name="companyWeb"
-                type="url"
-                className="input w-full input-primary border-none bg-error shadow-sm shadow-primary placeholder:text-base-200"
-                placeholder="Company Website URL"
-                required
+              <label className="label text-base-300">Give a new Rating</label>
+              <Rating
+                style={{ maxWidth: 180 }}
+                value={star}
+                onChange={setStar}
+                isRequired
               />
             </div>
 
             <div className="flex flex-col md:col-span-2 gap-0.5">
-              <label className="label text-base-300">Service Description</label>
+              <label className="label text-base-300">New Review</label>
               <textarea
-                name="description"
+                name="review"
                 type="text"
                 placeholder="Add a description"
                 className="textarea textarea-primary w-full border-none bg-error shadow-sm shadow-primary placeholder:text-base-200"
+                defaultValue={updatedReview?.review}
                 required
               ></textarea>
             </div>
@@ -133,12 +115,20 @@ const UpdateReview = () => {
               className="btn btn-primary md:col-span-2 text-error w-full mt-5"
               value="Submit"
             >
-              Submit
+              Update
             </button>
           </fieldset>
         </div>
+        <button
+          type="button"
+          onClick={() => document.getElementById("my_modal_3").close()}
+          className="btn btn-sm btn-circle btn-ghost hover:bg-red-600 hover:text-white absolute right-2 top-2"
+        >
+          ✕
+        </button>
       </form>
-    );
+    </div>
+  );
 };
 
-export default UpdateReview;
+export default updatedReview;
