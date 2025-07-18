@@ -17,7 +17,9 @@ const DetailsLeft = ({ data, reviewData }) => {
   const star3 = reviewData.filter((review) => review.rating === 3).length;
   const star4 = reviewData.filter((review) => review.rating === 4).length;
   const star5 = reviewData.filter((review) => review.rating === 5).length;
-  const averageRating = (star1 + star2 * 2 + star3 * 3 + star4 * 4 + star5 * 5) / totalReview;
+  const averageRating = (star1 + star2 * 2 + star3 * 3 + star4 * 4 + star5 * 5) / totalReview || 0;
+
+
 
   const massage = (average) => {
     if (average > 0 && average < 1) {
@@ -30,8 +32,10 @@ const DetailsLeft = ({ data, reviewData }) => {
       return "Good";
     } else if (average >= 4 && average < 5) {
       return "Very Good";
-    } else {
+    } else if(average === 5){
       return "Excellent";
+    }else {
+      return "Not Rated";
     }
   };
 
@@ -58,9 +62,9 @@ const DetailsLeft = ({ data, reviewData }) => {
                 <h3 className="text-xl font-semibold dark:text-violet-600">
                   {data.title}
                 </h3>
-                <p className="badge badge-soft badge-lg badge-primary text-[#684ecf] bg-[#e2dff3]">
+                {/* <p className="badge badge-soft badge-lg badge-primary text-[#684ecf] bg-[#e2dff3]">
                   {data.category}
-                </p>
+                </p> */}
               </div>
             </a>
             <p className="leading-snug text-base-200">{data.description}</p>
@@ -140,7 +144,7 @@ const DetailsLeft = ({ data, reviewData }) => {
                   <p className="text-5xl text-center font-extrabold">{averageRating.toFixed(1)}</p>
                   <p className="text-lg text-center font-bold">{massage(averageRating)}</p>
                   <Rating style={{ maxWidth: 90 }} value={averageRating} readOnly />
-                  <p className="text-sm text-center">10 reviews</p>
+                  <p className="text-sm text-center">{totalReview} reviews</p>
                 </div>
 
                 <div className="flex flex-col">

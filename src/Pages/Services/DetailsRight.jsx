@@ -26,6 +26,7 @@ const DetailsRight = ({ data, reviewData, setReviewData }) => {
 
     const formData = {
       serviceId: data._id,
+      serviceTitle: data.title,
       name: user.displayName,
       email: user.email,
       photo: user.photoURL,
@@ -114,7 +115,7 @@ const DetailsRight = ({ data, reviewData, setReviewData }) => {
               placeholder="Write a review"
             ></textarea>
             <button
-              className="absolute top-3 right-43 text-primary cursor-pointer"
+              className="absolute top-3 right-37 sm:right-43 text-primary cursor-pointer"
               type="submit"
             >
               <FiSend size={25} />

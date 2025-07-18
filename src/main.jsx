@@ -15,6 +15,7 @@ import AddService from "./Pages/AddService/AddService";
 import PrivateRoute from "./Firebase/PrivateRoute";
 import Details from "./Pages/Services/Details";
 
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -74,9 +75,9 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <AuthProvider>
-      <RouterProvider router={router}></RouterProvider>
-      <ToastContainer></ToastContainer>
-    </AuthProvider>
+      <AuthProvider>
+        <RouterProvider router={router}></RouterProvider>
+        <ToastContainer></ToastContainer>
+      </AuthProvider>
   </StrictMode>
 );

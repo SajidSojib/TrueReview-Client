@@ -9,7 +9,7 @@ const Service = ({service, index}) => {
       <motion.div
         initial={{ scale: 0.5, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
-        transition={{ duration: (index + 1) * 0.1, delay: (index + 1) * 0.1, ease: easeInOut }}
+        transition={{ duration: (index + 1) * 0.125, delay: (index + 1) * 0.1, ease: easeInOut }}
       >
         <div className="card border-2 border-accent bg-info shadow-sm hover:shadow-lg shadow-accent">
           <figure>
