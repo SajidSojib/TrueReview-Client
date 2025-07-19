@@ -1,6 +1,8 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../../Firebase/AuthProvider";
 import axios from "axios";
+import Swal from "sweetalert2";
+import { toast } from "react-toastify";
 
 const AddService = () => {
   const { user } = useContext(AuthContext);
@@ -17,14 +19,24 @@ const AddService = () => {
       year: "numeric",
     });
     
-    axios.post("http://localhost:9000/services", newService)
+    axios.post("http://localhost:9000/services", newService, {
+      headers: {
+        authorization: `Bearer ${user.accessToken}`,
+      },
+    })
       .then(res => {
         if(res.data.insertedId){
-          alert('Service added successfully');
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Service added successfully",
+            showConfirmButton: false,
+            timer: 1500,
+          })
         }
       })
       .catch(err => {
-          console.log(err);
+          toast.error(err.message + ": " + err.response.data.message);
       });
   };
   return (
@@ -160,7 +172,7 @@ const AddService = () => {
               className="btn btn-primary md:col-span-2 text-error w-full mt-5"
               value="Submit"
             >
-              Submit
+              Add Service
             </button>
           </fieldset>
         </div>

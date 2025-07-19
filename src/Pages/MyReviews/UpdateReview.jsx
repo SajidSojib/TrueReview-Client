@@ -3,9 +3,10 @@ import { AuthContext } from "../../Firebase/AuthProvider";
 import { Rating } from "@smastrom/react-rating";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { toast } from "react-toastify";
 
 const updatedReview = ({ reviews, setReviews, updatedReview }) => {
-  const { user } = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
   const [star, setStar] = useState(updatedReview?.rating);
 
   const handleSubmit = (event) => {
@@ -17,6 +18,10 @@ const updatedReview = ({ reviews, setReviews, updatedReview }) => {
       .patch(`http://localhost:9000/reviews/${updatedReview._id}`, {
         rating,
         review,
+      },{
+        headers: {
+          authorization: `Bearer ${user.accessToken}`,
+        },
       })
       .then((res) => {
         if (res.data.modifiedCount > 0) {
@@ -34,7 +39,7 @@ const updatedReview = ({ reviews, setReviews, updatedReview }) => {
             title: "Service updated successfully",
             showConfirmButton: false,
             timer: 1500,
-          });
+          })
 
           const modal = document.getElementById("my_modal_3");
           if (modal) {
@@ -43,7 +48,12 @@ const updatedReview = ({ reviews, setReviews, updatedReview }) => {
         }
       })
       .catch((err) => {
-        alert(err);
+        toast.error(err.message + ": " + err.response.data.message);
+        const modal = document.getElementById("my_modal_3");
+        if (modal) {
+          modal.close();
+        }
+        logOut();
       });
   };
   return (

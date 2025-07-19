@@ -9,7 +9,7 @@ import Swal from "sweetalert2";
 import UpdateReview from "./UpdateReview";
 
 const MyReviews = () => {
-  const { user } = use(AuthContext);
+  const { user, logOut } = use(AuthContext);
   const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(true);
   const [helpful, setHelpful] = useState(10);
@@ -17,32 +17,40 @@ const MyReviews = () => {
 
   const handleDelete = (review) => {
     Swal.fire({
-        title: "Are you sure?",
-        text: "You won't be able to revert this!",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Yes, delete it!",
-      }).then((result) => {
-        if (result.isConfirmed) {
-            axios
-            .delete(`http://localhost:9000/reviews/${review?._id}`)
-            .then((res) => {
-              if (res.data.deletedCount > 0) {
-                setReviews(reviews.filter((s) => s._id !== review._id));
-              }
-            })
-            .catch((err) => {
-              console.log(err);
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios
+          .delete(`http://localhost:9000/reviews/${review?._id}`, {
+            headers: {
+              authorization: `Bearer ${user.accessToken}`,
+            },
+          })
+          .then((res) => {
+            if (res.data.deletedCount > 0) {
+              setReviews(reviews.filter((s) => s._id !== review._id));
+              Swal.fire({
+                title: "Deleted!",
+                text: "Your Review has been deleted.",
+                icon: "success",
+              });
+            }
+          })
+          .catch((err) => {
+            Swal.fire({
+              title: "Error!",
+              text: `${err.message}: ${err.response.data.message}`,
+              icon: "error",
             });
-          Swal.fire({
-            title: "Deleted!",
-            text: "Your Review has been deleted.",
-            icon: "success",
           });
-        }
-      });
+      }
+    });
   };
 
   const handleUpdate = (review) => {
@@ -53,13 +61,19 @@ const MyReviews = () => {
   useEffect(
     () => {
       axios
-        .get(`http://localhost:9000/reviews?email=${user?.email}`)
+        .get(`http://localhost:9000/reviews?email=${user?.email}`, {
+          headers: {
+            authorization: `Bearer ${user?.accessToken}`,
+          },
+        })
         .then((res) => {
           setReviews(res.data);
           setLoading(false);
         })
         .catch((err) => {
-          console.log(err);
+          toast.error(err.message + ": " + err.response.data.message);
+          setLoading(false);
+          logOut();
         });
     },
     [user?.email],
@@ -91,7 +105,10 @@ const MyReviews = () => {
             className="bg-info relative shadow-lg shadow-accent p-6 rounded-2xl max-w-4xl mx-auto"
           >
             <div className="absolute right-4 top-2 space-x-2">
-              <button onClick={() => handleUpdate(review)} className="btn btn-sm btn-circle bg-accent border-none hover:bg-primary hover:text-white">
+              <button
+                onClick={() => handleUpdate(review)}
+                className="btn btn-sm btn-circle bg-accent border-none hover:bg-primary hover:text-white"
+              >
                 <FiEdit3 size={22} />
               </button>
               <button
@@ -130,13 +147,7 @@ const MyReviews = () => {
               />
             </div>
 
-            <p className="mb-2 text-base-200">
-              {review?.review} This is my third Invicta Pro Diver. They are just
-              fantastic value for money. This one arrived yesterday and the
-              first thing I did was set the time, popped on an identical strap
-              from another Invicta and went in the shower with it to test the
-              waterproofing.... No problems.
-            </p>
+            <p className="mb-2 text-base-200">{review?.review}</p>
             <a
               href="#"
               className="block mb-5 text-sm font-medium text-blue-600 hover:underline dark:text-blue-500"

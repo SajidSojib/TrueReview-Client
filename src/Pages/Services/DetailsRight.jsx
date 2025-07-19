@@ -9,14 +9,14 @@ const DetailsRight = ({ data, reviewData, setReviewData }) => {
   const [rating, setRating] = useState(0);
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
-
   const handleReview = (e) => {
     e.preventDefault();
     const review = e.target.review.value;
 
     if (!user) {
       return (
-        toast.error("You must login first to give review"), navigate("/login")
+        toast.error("You must login first to give review")
+         ,navigate("/login")
       );
     }
 
@@ -40,12 +40,18 @@ const DetailsRight = ({ data, reviewData, setReviewData }) => {
       rating,
       review,
     };
-    axios.post("http://localhost:9000/reviews", formData).then((res) => {
+    axios.post("http://localhost:9000/reviews", formData, {
+      headers: {
+        authorization: `Bearer ${user.accessToken}`,
+      },
+    }).then((res) => {
       if (res.data.insertedId) {
         toast.success("Review added successfully");
         formData._id = res.data.insertedId;
         setReviewData([formData, ...reviewData]);
       }
+    }).catch(err => {
+      toast.error(err.message+': '+err.response.data.message);
     });
   };
   return (

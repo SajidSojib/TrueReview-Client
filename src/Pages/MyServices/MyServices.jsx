@@ -3,9 +3,10 @@ import { AuthContext } from "../../Firebase/AuthProvider";
 import axios from "axios";
 import UpdateService from "./UpdateService";
 import Swal from "sweetalert2";
+import { toast } from "react-toastify";
 
 const MyServices = () => {
-  const {user} = useContext(AuthContext);
+  const {user, logOut} = useContext(AuthContext);
   const [services, setServices] = useState([]);
   const [loading, setLoading] = useState(true);
   const [updateService, setUpdateService] = useState(null);
@@ -27,20 +28,30 @@ const MyServices = () => {
       }).then((result) => {
         if (result.isConfirmed) {
             axios
-            .delete(`http://localhost:9000/services/${service?._id}`)
+            .delete(`http://localhost:9000/services/${service?._id}`, {
+              headers: {
+                authorization: `Bearer ${user.accessToken}`,
+              },
+            })
             .then((res) => {
               if (res.data.deletedCount > 0) {
                 setServices(services.filter((s) => s._id !== service._id));
+                Swal.fire({
+                  title: "Deleted!",
+                  text: "Your Post has been deleted.",
+                  icon: "success",
+                });
               }
             })
             .catch((err) => {
-              console.log(err);
+              Swal.fire({
+                title: "Error!",
+                text: `${err.message}: ${err.response.data.message}`,
+                icon: "error",
+              })
+              logOut();
             });
-          Swal.fire({
-            title: "Deleted!",
-            text: "Your Post has been deleted.",
-            icon: "success",
-          });
+          
         }
       });
     
@@ -48,13 +59,19 @@ const MyServices = () => {
   
   useEffect(() => {
     axios
-      .get(`http://localhost:9000/services?email=${user?.email}`)
+      .get(`http://localhost:9000/services?email=${user?.email}`, {
+        headers: {
+          authorization: `Bearer ${user?.accessToken}`,
+        },
+      })
       .then((res) => {
         setServices(res.data);
         setLoading(false);
       })
       .catch((err) => {
-        console.log(err);
+        toast.error(err.message + ': '+ err.response.data.message);
+        setLoading(false);
+        logOut();
       });
   }, [user?.email, services.length]);
 

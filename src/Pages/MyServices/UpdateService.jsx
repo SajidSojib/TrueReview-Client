@@ -5,7 +5,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 
 const UpdateService = ({ updateService, setServices, services }) => {
-  const { user } = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
   const handleSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
@@ -16,7 +16,11 @@ const UpdateService = ({ updateService, setServices, services }) => {
     }
 
     axios
-      .put(`http://localhost:9000/services/${updateService?._id}`, newService)
+      .put(`http://localhost:9000/services/${updateService?._id}`, newService, {
+        headers: {
+          authorization: `Bearer ${user.accessToken}`,
+        },
+      })
       .then((res) => {
         if (res.data.modifiedCount > 0) {
           newService._id = updateService._id;
@@ -38,7 +42,12 @@ const UpdateService = ({ updateService, setServices, services }) => {
         }
       })
       .catch((err) => {
-        console.log(err);
+        toast.error(err.message + ': ' + err.response.data.message);
+        const modal = document.getElementById("my_modal_3");
+        if (modal) {
+          modal.close();
+        }
+        logOut();
       });
   };
 
