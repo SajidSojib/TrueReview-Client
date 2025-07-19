@@ -4,6 +4,7 @@ import axios from 'axios';
 import DetailsLeft from './DetailsLeft';
 import DetailsRight from './DetailsRight';
 import "@smastrom/react-rating/style.css";
+import { Helmet } from 'react-helmet-async';
 
 const Details = () => {
     const {id} = useParams();
@@ -49,6 +50,7 @@ const Details = () => {
     return (
       <div className="px-4 py-16 mt-12 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20 rounded-2xl flex flex-col gap-4 lg:flex-row ">
         {/* left sidebar for details */}
+        <Helmet><title>Details | True Review</title></Helmet>
         <div className='mx-auto'>
           <div className="sticky top-32">
             <DetailsLeft data={data} reviewData={reviewData}></DetailsLeft>

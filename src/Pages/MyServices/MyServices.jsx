@@ -4,6 +4,7 @@ import axios from "axios";
 import UpdateService from "./UpdateService";
 import Swal from "sweetalert2";
 import { toast } from "react-toastify";
+import { Helmet } from "react-helmet-async";
 
 const MyServices = () => {
   const {user, logOut} = useContext(AuthContext);
@@ -85,6 +86,7 @@ const MyServices = () => {
 
   return (
     <div className="px-4 py-16 mt-12 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
+      <Helmet><title>My Services | TrueReview</title></Helmet>
       <h1 className="text-3xl font-bold text-center text-base-300">
         My Posted Services
       </h1>

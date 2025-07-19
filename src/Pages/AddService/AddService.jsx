@@ -3,6 +3,7 @@ import { AuthContext } from "../../Firebase/AuthProvider";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { toast } from "react-toastify";
+import { Helmet } from "react-helmet-async";
 
 const AddService = () => {
   const { user } = useContext(AuthContext);
@@ -41,6 +42,9 @@ const AddService = () => {
   };
   return (
     <div className="px-4 py-16 mt-12 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
+      <Helmet>
+        <title>Add Service | TrueReview</title>
+      </Helmet>
       <form onSubmit={handleSubmit}>
         <div className=" card-body bg-info w-full max-w-4xl mx-auto mb-10 shrink-0 shadow-accent shadow-xl pt-12 p-6 md:p-12 sm:transform sm:scale-105 rounded-3xl">
           <h1 className="text-3xl font-bold text-center text-base-300">

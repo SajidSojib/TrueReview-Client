@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../../Firebase/AuthProvider";
 import Swal from "sweetalert2";
 import { toast } from "react-toastify";
+import { Helmet } from "react-helmet-async";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -54,6 +55,7 @@ const Login = () => {
   };
   return (
     <div data-aos="zoom-in-up" className="mt-14 pt-2">
+      <Helmet><title>Login | TrueReview</title></Helmet>
       <div className="relative mx-auto max-w-md px-8 pt-10 pb-8 mt-10 bg-info text-base-300 rounded-xl shadow-2xl p-7 sm:p-10">
         <h3 className="mb-4 text-xl font-semibold sm:text-center sm:mb-6 sm:text-2xl">
           Login Now

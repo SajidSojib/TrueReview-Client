@@ -14,7 +14,8 @@ import MyReviews from "./Pages/MyReviews/MyReviews";
 import AddService from "./Pages/AddService/AddService";
 import PrivateRoute from "./Firebase/PrivateRoute";
 import Details from "./Pages/Services/Details";
-
+import { HelmetProvider } from "react-helmet-async";
+import Error from "./Layout/Error";
 
 const router = createBrowserRouter([
   {
@@ -49,9 +50,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/services/:id",
-        element: (
-            <Details></Details>
-        ),
+        element: <Details></Details>,
       },
 
       { path: "/login", element: <Login></Login> },
@@ -61,21 +60,17 @@ const router = createBrowserRouter([
 
   {
     path: "*",
-    element: (
-      <div>
-        <Link className="btn" to="/">
-          go back
-        </Link>
-      </div>
-    ),
+    element: <Error></Error>,
   },
 ]);
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
+    <HelmetProvider>
       <AuthProvider>
         <RouterProvider router={router}></RouterProvider>
         <ToastContainer></ToastContainer>
       </AuthProvider>
+    </HelmetProvider>
   </StrictMode>
 );

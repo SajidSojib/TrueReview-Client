@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Hero from "./Hero";
 import Partners from "./Partners";
 import Faq from "./Faq";
@@ -6,8 +6,8 @@ import Contact from "./Contact";
 import Feature from "./Feature";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { AuthContext } from "../../Firebase/AuthProvider";
 import Stats from "./Stats";
+import { Helmet } from "react-helmet-async";
 
 const Home = () => {
   const [slideData, setSlideData] = useState([]);
@@ -82,6 +82,9 @@ const Home = () => {
   }
   return (
     <div>
+      <Helmet>
+          <title>Home | TrueReview</title>
+      </Helmet>
       <Hero slideData={slideData}></Hero>
       <Feature services={services}></Feature>
       <Partners partnerData={partnerData}></Partners>

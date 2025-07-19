@@ -7,6 +7,7 @@ import { FiEdit3 } from "react-icons/fi";
 import { MdOutlineDeleteForever } from "react-icons/md";
 import Swal from "sweetalert2";
 import UpdateReview from "./UpdateReview";
+import { Helmet } from "react-helmet-async";
 
 const MyReviews = () => {
   const { user, logOut } = use(AuthContext);
@@ -90,6 +91,7 @@ const MyReviews = () => {
 
   return (
     <div className="px-4 py-16 mt-12 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
+      <Helmet><title>My Reviews | TrueReview</title></Helmet>
       <h1 className="text-3xl font-bold text-center text-base-300">
         My Reviews
       </h1>
