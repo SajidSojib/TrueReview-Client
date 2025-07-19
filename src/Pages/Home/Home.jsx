@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Hero from "./Hero";
 import Partners from "./Partners";
 import Faq from "./Faq";
@@ -6,6 +6,8 @@ import Contact from "./Contact";
 import Feature from "./Feature";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { AuthContext } from "../../Firebase/AuthProvider";
+import Stats from "./Stats";
 
 const Home = () => {
   const [slideData, setSlideData] = useState([]);
@@ -57,7 +59,21 @@ const Home = () => {
       });
   }, []);
 
-  if (loading1 || loading2 || loading3, loading4) {
+  const [count, setCount] = useState(0);
+  const [loading5, setLoading5] = useState(true);
+
+  useEffect(() => {
+    axios.get("http://localhost:9000/count").then((res) => {
+      setCount(res.data);
+      setLoading5(false);
+    })
+      .catch((err) => {
+        toast.error(err);
+      });
+  }, []);
+
+
+  if (loading1 || loading2 || loading3 || loading4 || loading5) {
     return (
       <div className="flex items-center justify-center min-h-[calc(100vh-400px)]">
         <span className="loading loading-dots loading-xl"></span>
@@ -69,6 +85,7 @@ const Home = () => {
       <Hero slideData={slideData}></Hero>
       <Feature services={services}></Feature>
       <Partners partnerData={partnerData}></Partners>
+      <Stats count={count}></Stats>
       <Faq questions={faqData}></Faq>
       <Contact></Contact>
     </div>

@@ -75,7 +75,6 @@ const MyServices = () => {
       });
   }, [user?.email, services.length]);
 
-  console.log(services);
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-[calc(100vh-400px)]">

@@ -7,7 +7,7 @@ import { easeInOut, motion } from "framer-motion";
 
 const Feature = ({services}) => {
     return (
-      <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-6 rounded-2xl">
+      <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-6 mb-28 mt-8 rounded-2xl">
         <h2 className="text-3xl text-center font-bold text-base-300">
           Featured Services
         </h2>
@@ -19,6 +19,7 @@ const Feature = ({services}) => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {services?.map((service, index) => (
           <motion.div
+            key={service._id}
             initial={{ scale: 0.5, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{

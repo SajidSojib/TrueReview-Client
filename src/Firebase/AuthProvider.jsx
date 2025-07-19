@@ -47,7 +47,7 @@ const AuthProvider = ({ children }) => {
     createUser,
     logOut,
     navbarLoading,
-    setNavbarLoading
+    setNavbarLoading,
   };
 
   useEffect(() => {
