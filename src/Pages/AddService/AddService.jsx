@@ -19,25 +19,26 @@ const AddService = () => {
       month: "long",
       year: "numeric",
     });
-    
-    axios.post("http://localhost:9000/services", newService, {
-      headers: {
-        authorization: `Bearer ${user.accessToken}`,
-      },
-    })
-      .then(res => {
-        if(res.data.insertedId){
+
+    axios
+      .post("https://true-review-server.vercel.app/services", newService, {
+        headers: {
+          authorization: `Bearer ${user.accessToken}`,
+        },
+      })
+      .then((res) => {
+        if (res.data.insertedId) {
           Swal.fire({
             position: "center",
             icon: "success",
             title: "Service added successfully",
             showConfirmButton: false,
             timer: 1500,
-          })
+          });
         }
       })
-      .catch(err => {
-          toast.error(err.message + ": " + err.response.data.message);
+      .catch((err) => {
+        toast.error(err.message + ": " + err.response.data.message);
       });
   };
   return (
@@ -120,7 +121,7 @@ const AddService = () => {
             <div className="flex flex-col gap-0.5">
               <label className="label text-base-300">Company Name</label>
               <input
-                name="compay"
+                name="company"
                 type="text"
                 className="input w-full border-none bg-error shadow-sm shadow-primary placeholder:text-base-200 input-primary"
                 placeholder="Enter Company Name"

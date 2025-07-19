@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 import { Helmet } from "react-helmet-async";
 
 const MyServices = () => {
-  const {user, logOut} = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
   const [services, setServices] = useState([]);
   const [loading, setLoading] = useState(true);
   const [updateService, setUpdateService] = useState(null);
@@ -19,58 +19,62 @@ const MyServices = () => {
 
   const handleDelete = (service) => {
     Swal.fire({
-        title: "Are you sure?",
-        text: "You won't be able to revert this!",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Yes, delete it!",
-      }).then((result) => {
-        if (result.isConfirmed) {
-            axios
-            .delete(`http://localhost:9000/services/${service?._id}`, {
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios
+          .delete(
+            `https://true-review-server.vercel.app/services/${service?._id}`,
+            {
               headers: {
                 authorization: `Bearer ${user.accessToken}`,
               },
-            })
-            .then((res) => {
-              if (res.data.deletedCount > 0) {
-                setServices(services.filter((s) => s._id !== service._id));
-                Swal.fire({
-                  title: "Deleted!",
-                  text: "Your Post has been deleted.",
-                  icon: "success",
-                });
-              }
-            })
-            .catch((err) => {
+            }
+          )
+          .then((res) => {
+            if (res.data.deletedCount > 0) {
+              setServices(services.filter((s) => s._id !== service._id));
               Swal.fire({
-                title: "Error!",
-                text: `${err.message}: ${err.response.data.message}`,
-                icon: "error",
-              })
-              logOut();
+                title: "Deleted!",
+                text: "Your Post has been deleted.",
+                icon: "success",
+              });
+            }
+          })
+          .catch((err) => {
+            Swal.fire({
+              title: "Error!",
+              text: `${err.message}: ${err.response.data.message}`,
+              icon: "error",
             });
-          
-        }
-      });
-    
+            logOut();
+          });
+      }
+    });
   };
-  
+
   useEffect(() => {
     axios
-      .get(`http://localhost:9000/services?email=${user?.email}`, {
-        headers: {
-          authorization: `Bearer ${user?.accessToken}`,
-        },
-      })
+      .get(
+        `https://true-review-server.vercel.app/services?email=${user?.email}`,
+        {
+          headers: {
+            authorization: `Bearer ${user?.accessToken}`,
+          },
+        }
+      )
       .then((res) => {
         setServices(res.data);
         setLoading(false);
       })
       .catch((err) => {
-        toast.error(err.message + ': '+ err.response.data.message);
+        toast.error(err.message + ": " + err.response.data.message);
         setLoading(false);
         logOut();
       });
@@ -86,7 +90,9 @@ const MyServices = () => {
 
   return (
     <div className="px-4 py-16 mt-12 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
-      <Helmet><title>My Services | TrueReview</title></Helmet>
+      <Helmet>
+        <title>My Services | TrueReview</title>
+      </Helmet>
       <h1 className="text-3xl font-bold text-center text-base-300">
         My Posted Services
       </h1>
@@ -118,10 +124,16 @@ const MyServices = () => {
                   <td>{service.category}</td>
                   <td>${service.price}</td>
                   <td className="flex items-center gap-2">
-                    <button onClick={() => handleUpdate(service)} className="btn btn-outline text-base hover:btn-primary hover:text-error border-primary">
+                    <button
+                      onClick={() => handleUpdate(service)}
+                      className="btn btn-outline text-base hover:btn-primary hover:text-error border-primary"
+                    >
                       Update
                     </button>
-                    <button onClick={() => handleDelete(service)} className="btn btn-outline border-red-600 text-base hover:bg-red-600 hover:text-base">
+                    <button
+                      onClick={() => handleDelete(service)}
+                      className="btn btn-outline border-red-600 text-base hover:bg-red-600 hover:text-base"
+                    >
                       Delete
                     </button>
                   </td>

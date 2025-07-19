@@ -15,14 +15,18 @@ const updatedReview = ({ reviews, setReviews, updatedReview }) => {
     const review = event.target.review.value;
 
     axios
-      .patch(`http://localhost:9000/reviews/${updatedReview._id}`, {
-        rating,
-        review,
-      },{
-        headers: {
-          authorization: `Bearer ${user.accessToken}`,
+      .patch(
+        `https://true-review-server.vercel.app/reviews/${updatedReview._id}`,
+        {
+          rating,
+          review,
         },
-      })
+        {
+          headers: {
+            authorization: `Bearer ${user.accessToken}`,
+          },
+        }
+      )
       .then((res) => {
         if (res.data.modifiedCount > 0) {
           updatedReview.rating = star;
@@ -39,7 +43,7 @@ const updatedReview = ({ reviews, setReviews, updatedReview }) => {
             title: "Service updated successfully",
             showConfirmButton: false,
             timer: 1500,
-          })
+          });
 
           const modal = document.getElementById("my_modal_3");
           if (modal) {

@@ -28,11 +28,14 @@ const MyReviews = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .delete(`http://localhost:9000/reviews/${review?._id}`, {
-            headers: {
-              authorization: `Bearer ${user.accessToken}`,
-            },
-          })
+          .delete(
+            `https://true-review-server.vercel.app/reviews/${review?._id}`,
+            {
+              headers: {
+                authorization: `Bearer ${user.accessToken}`,
+              },
+            }
+          )
           .then((res) => {
             if (res.data.deletedCount > 0) {
               setReviews(reviews.filter((s) => s._id !== review._id));
@@ -62,11 +65,14 @@ const MyReviews = () => {
   useEffect(
     () => {
       axios
-        .get(`http://localhost:9000/reviews?email=${user?.email}`, {
-          headers: {
-            authorization: `Bearer ${user?.accessToken}`,
-          },
-        })
+        .get(
+          `https://true-review-server.vercel.app/reviews?email=${user?.email}`,
+          {
+            headers: {
+              authorization: `Bearer ${user?.accessToken}`,
+            },
+          }
+        )
         .then((res) => {
           setReviews(res.data);
           setLoading(false);
@@ -91,7 +97,9 @@ const MyReviews = () => {
 
   return (
     <div className="px-4 py-16 mt-12 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
-      <Helmet><title>My Reviews | TrueReview</title></Helmet>
+      <Helmet>
+        <title>My Reviews | TrueReview</title>
+      </Helmet>
       <h1 className="text-3xl font-bold text-center text-base-300">
         My Reviews
       </h1>

@@ -50,10 +50,12 @@ const Home = () => {
   const [loading4, setLoading4] = useState(true);
 
   useEffect(() => {
-    axios.get("http://localhost:9000/limitedServices").then((res) => {
-      setServices(res.data);
-      setLoading4(false);
-    })
+    axios
+      .get("https://true-review-server.vercel.app/limitedServices")
+      .then((res) => {
+        setServices(res.data);
+        setLoading4(false);
+      })
       .catch((err) => {
         toast.error(err);
       });
@@ -63,15 +65,16 @@ const Home = () => {
   const [loading5, setLoading5] = useState(true);
 
   useEffect(() => {
-    axios.get("http://localhost:9000/count").then((res) => {
-      setCount(res.data);
-      setLoading5(false);
-    })
+    axios
+      .get("https://true-review-server.vercel.app/count")
+      .then((res) => {
+        setCount(res.data);
+        setLoading5(false);
+      })
       .catch((err) => {
         toast.error(err);
       });
   }, []);
-
 
   if (loading1 || loading2 || loading3 || loading4 || loading5) {
     return (
@@ -83,7 +86,7 @@ const Home = () => {
   return (
     <div>
       <Helmet>
-          <title>Home | TrueReview</title>
+        <title>Home | TrueReview</title>
       </Helmet>
       <Hero slideData={slideData}></Hero>
       <Feature services={services}></Feature>

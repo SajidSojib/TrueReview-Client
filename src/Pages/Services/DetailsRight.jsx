@@ -15,8 +15,7 @@ const DetailsRight = ({ data, reviewData, setReviewData }) => {
 
     if (!user) {
       return (
-        toast.error("You must login first to give review")
-         ,navigate("/login")
+        toast.error("You must login first to give review"), navigate("/login")
       );
     }
 
@@ -40,19 +39,22 @@ const DetailsRight = ({ data, reviewData, setReviewData }) => {
       rating,
       review,
     };
-    axios.post("http://localhost:9000/reviews", formData, {
-      headers: {
-        authorization: `Bearer ${user.accessToken}`,
-      },
-    }).then((res) => {
-      if (res.data.insertedId) {
-        toast.success("Review added successfully");
-        formData._id = res.data.insertedId;
-        setReviewData([formData, ...reviewData]);
-      }
-    }).catch(err => {
-      toast.error(err.message+': '+err.response.data.message);
-    });
+    axios
+      .post("https://true-review-server.vercel.app/reviews", formData, {
+        headers: {
+          authorization: `Bearer ${user.accessToken}`,
+        },
+      })
+      .then((res) => {
+        if (res.data.insertedId) {
+          toast.success("Review added successfully");
+          formData._id = res.data.insertedId;
+          setReviewData([formData, ...reviewData]);
+        }
+      })
+      .catch((err) => {
+        toast.error(err.message + ": " + err.response.data.message);
+      });
   };
   return (
     <div className="text-base-300 mt-8 xl:mt-0">
@@ -96,9 +98,7 @@ const DetailsRight = ({ data, reviewData, setReviewData }) => {
               </div>
             </div>
             <div className="p-4 space-y-2 text-sm dark:text-gray-600">
-              <p>
-                {rev.review}
-              </p>
+              <p>{rev.review}</p>
             </div>
           </div>
         ))}

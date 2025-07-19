@@ -11,7 +11,9 @@ const Services = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:9000/services?search=${search}&filterParam=${filterParam}`)
+      .get(
+        `https://true-review-server.vercel.app/services?search=${search}&filterParam=${filterParam}`
+      )
       .then((res) => {
         setServices(res.data);
         setLoading(false);

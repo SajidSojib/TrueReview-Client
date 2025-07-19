@@ -11,20 +11,26 @@ const UpdateService = ({ updateService, setServices, services }) => {
     const formData = new FormData(e.target);
     const newService = Object.fromEntries(formData.entries());
 
-    if(newService.category === 'Select Category'){
-      return toast.error('Please select a category');
+    if (newService.category === "Select Category") {
+      return toast.error("Please select a category");
     }
 
     axios
-      .put(`http://localhost:9000/services/${updateService?._id}`, newService, {
-        headers: {
-          authorization: `Bearer ${user.accessToken}`,
-        },
-      })
+      .put(
+        `https://true-review-server.vercel.app/services/${updateService?._id}`,
+        newService,
+        {
+          headers: {
+            authorization: `Bearer ${user.accessToken}`,
+          },
+        }
+      )
       .then((res) => {
         if (res.data.modifiedCount > 0) {
           newService._id = updateService._id;
-          setServices(services.map((s) => (s._id === updateService._id ? newService : s)));
+          setServices(
+            services.map((s) => (s._id === updateService._id ? newService : s))
+          );
 
           Swal.fire({
             position: "center",
@@ -32,7 +38,7 @@ const UpdateService = ({ updateService, setServices, services }) => {
             title: "Service updated successfully",
             showConfirmButton: false,
             timer: 1500,
-          })
+          });
 
           e.target.reset();
           const modal = document.getElementById("my_modal_3");
@@ -42,7 +48,7 @@ const UpdateService = ({ updateService, setServices, services }) => {
         }
       })
       .catch((err) => {
-        toast.error(err.message + ': ' + err.response.data.message);
+        toast.error(err.message + ": " + err.response.data.message);
         const modal = document.getElementById("my_modal_3");
         if (modal) {
           modal.close();
@@ -190,7 +196,11 @@ const UpdateService = ({ updateService, setServices, services }) => {
             </button>
           </fieldset>
         </div>
-        <button type="button" onClick={() => document.getElementById("my_modal_3").close()} className="btn btn-sm btn-circle btn-ghost hover:bg-red-600 hover:text-white absolute right-2 top-2">
+        <button
+          type="button"
+          onClick={() => document.getElementById("my_modal_3").close()}
+          className="btn btn-sm btn-circle btn-ghost hover:bg-red-600 hover:text-white absolute right-2 top-2"
+        >
           ✕
         </button>
       </form>
