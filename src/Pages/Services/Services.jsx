@@ -5,10 +5,13 @@ import Service from "./Service";
 const Services = () => {
   const [services, setServices] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [search, setSearch] = useState("");
+  const [filterParam, setFilterParam] = useState("");
+  console.log(filterParam);
 
   useEffect(() => {
     axios
-      .get("http://localhost:9000/services")
+      .get(`http://localhost:9000/services?search=${search}&filterParam=${filterParam}`)
       .then((res) => {
         setServices(res.data);
         setLoading(false);
@@ -16,7 +19,7 @@ const Services = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [search, filterParam]);
 
   if (loading) {
     return (
@@ -36,8 +39,61 @@ const Services = () => {
         design to home care and consulting.
       </p>
 
+      <div className="flex justify-between gap-12 mb-8">
+        <label className="input w-full flex-2 input-primary border-none bg-info shadow-sm shadow-primary placeholder:text-base-200">
+          <svg
+            className="h-[1em] opacity-50"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+          >
+            <g
+              strokeLinejoin="round"
+              strokeLinecap="round"
+              strokeWidth="2.5"
+              fill="none"
+              stroke="currentColor"
+            >
+              <circle cx="11" cy="11" r="8"></circle>
+              <path d="m21 21-4.3-4.3"></path>
+            </g>
+          </svg>
+          <input
+            onChange={(e) => setSearch(e.target.value)}
+            type="search"
+            placeholder="Search"
+          />
+        </label>
+
+        {/*  */}
+        <select
+          onChange={(e) => setFilterParam(e.target.value)}
+          name="category"
+          defaultValue="Filter by Category"
+          className="select flex-1 w-full select-primary border-none bg-info shadow-sm shadow-primary placeholder:text-base-200"
+        >
+          <option disabled={true}>Filter by Category</option>
+          <option value="">View All Categories</option>
+          <option value="Technology">Technology</option>
+          <option value="Design">Design</option>
+          <option value="Education">Education</option>
+          <option value="Finance">Finance</option>
+          <option value="Marketing">Marketing</option>
+          <option value="Healthcare">Healthcare</option>
+          <option value="Legal Services">Legal Services</option>
+          <option value="Writing">Writing</option>
+          <option value="Home Services">Home Services</option>
+          <option value="Events & Entertainment">Events & Entertainment</option>
+          <option value="Travel & Hospitality">Travel & Hospitality</option>
+          <option value="Business Consulting">Business Consulting</option>
+          <option value="Freelance">Freelance</option>
+          <option value="Others">Others</option>
+        </select>
+      </div>
+
+      {/* <hr className="border-2 my-5 border-primary"/> */}
+
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {services?.map((service,index) => (
+        {services?.map((service, index) => (
           <Service key={service._id} service={service} index={index}></Service>
         ))}
       </div>

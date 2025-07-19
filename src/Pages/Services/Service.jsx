@@ -4,6 +4,7 @@ import { FcCalendar } from "react-icons/fc";
 import { Link } from 'react-router';
 // eslint-disable-next-line no-unused-vars
 import { easeInOut, motion } from "framer-motion";
+import { MdOutlineWork } from "react-icons/md";
 const Service = ({service, index}) => {
     return (
       <motion.div
@@ -31,6 +32,14 @@ const Service = ({service, index}) => {
               </span>
               <span>
                 <span className="font-semibold">Price:</span> {service.price}
+              </span>
+            </p>
+            <p className="text-base-200 flex items-center gap-1">
+              <span className="text-lg">
+                <MdOutlineWork size={22} color='#f59e0b'></MdOutlineWork>
+              </span>
+              <span>
+                <span className="font-semibold">Company:</span> {service.company}
               </span>
             </p>
             <p className="text-base-200 flex items-center gap-1">
