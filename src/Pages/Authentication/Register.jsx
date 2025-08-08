@@ -54,7 +54,7 @@ const Register = () => {
               text: "You are logged in now",
               icon: "success",
               confirmButtonText: "Ok",
-            });
+            }); 
           });
         });
       })

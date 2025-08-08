@@ -1,30 +1,15 @@
-# TrueReview – Service Review System
+# ⭐TrueReview – Service Review System
 
-**Live Site**: [https://true-review-3d3e3.web.app](https://true-review-3d3e3.web.app)  
-**Server URL**: [https://true-review-server.vercel.app](https://true-review-server.vercel.app)
 
----
+**TrueReview** is a Service Review Application designed to let users discover, post, and review various services.
 
-## 📌 Project Overview
+**Live Site:** [https://true-review-3d3e3.web.app](https://true-review-3d3e3.web.app)   
+**Backend Site:** [https://true-review-server.vercel.app](https://true-review-server.vercel.app)
 
-**TrueReview** is a Service Review Application designed to let users discover, post, and review various services. It offers a seamless and interactive experience for users to share their opinions, manage services, and engage with reviews in a secure environment. Built with modern web technologies, TrueReview emphasizes real-time data handling, user authentication, and clean UI/UX design.
 
 ---
 
-## 🎯 Purpose
-
-The goal of this project is to develop a real-world service review platform that allows users to:
-
-- Add, update, and delete services
-- Post detailed reviews with ratings
-- Manage their personal review contributions
-- Explore service details and community feedback
-
-This project provides practical experience in full-stack development, integrating Firebase for authentication, and building RESTful APIs for backend communication.
-
----
-
-## ✅ Key Features
+## 🚀 Features
 
 - 🔐 **User Authentication** – Secure login and registration with Firebase Auth.
 - 📝 **Service Management** – Authenticated users can add new services, edit service info, or delete them.
@@ -38,6 +23,28 @@ This project provides practical experience in full-stack development, integratin
 
 ---
 
+
+## 📸 Screenshot
+
+![RedAid Screenshot](./src/assets/webpage.png)
+
+---
+
+## Project Overview
+
+**TrueReview** is a Service Review Application designed to let users discover, post, and review various services. It offers a seamless and interactive experience for users to share their opinions, manage services, and engage with reviews in a secure environment. Built with modern web technologies, TrueReview emphasizes real-time data handling, user authentication, and clean UI/UX design.
+The goal of this project is to develop a real-world service review platform that allows users to:
+
+- Add, update, and delete services
+- Post detailed reviews with ratings
+- Manage their personal review contributions
+- Explore service details and community feedback
+
+This project provides practical experience in full-stack development, integrating Firebase for authentication, and building RESTful APIs for backend communication.
+
+
+
+---
 ## 🧰 Tech Stack
 
 ### 🔹 Frontend
@@ -86,15 +93,190 @@ This project provides practical experience in full-stack development, integratin
   "swiper": "^11.2.10",
   "tailwindcss": "^4.1.11"
 }
+```
+
+### **Backend**
+- `express`
+- `mongodb`
+- `cors`
+- `dotenv`
+- `firebase-admin`
+
+---
+
+## ⚙️ Environment Variables
+
+Create `.env` files in both **client** and **server** directories.
+
+### **server/.env.example**
+```env
+PORT=5000
+MONGODB_URI=your_mongodb_connection_string
+STRIPE_SECRET_KEY=sk_test_...
+FIREBASE_SERVICE_ACCOUNT_JSON=./serviceAccountKey.json
+IMAGEBB_API_KEY=your_imagebb_key
+````
+
+### **client/.env.example**
+
+```env
+VITE_FIREBASE_API_KEY=...
+VITE_FIREBASE_AUTH_DOMAIN=...
+VITE_FIREBASE_PROJECT_ID=...
+VITE_FIREBASE_STORAGE_BUCKET=...
+VITE_FIREBASE_MESSAGING_SENDER_ID=...
+VITE_FIREBASE_APP_ID=...
+VITE_STRIPE_PUBLISHABLE_KEY=pk_test_...
+```
+
+---
+
+## ▶️ Run Locally
+
+1. **Clone the repository**
+
+```bash
+git clone https://github.com/<your-username>/<repo-name>.git
+cd <repo-name>
+```
+
+2. **Setup Backend**
+
+```bash
+cd server
+cp .env.example .env
+# Fill in your environment variables
+npm install
+npm run dev
+```
+
+3. **Setup Frontend**
+
+```bash
+cd ../client
+cp .env.example .env
+# Fill in your environment variables
+npm install
+npm run dev
+```
+
+4. **Access the app**
+
+* Frontend: [http://localhost:5173](http://localhost:5173) (Vite) or [http://localhost:3000](http://localhost:3000) (CRA)
+* Backend API: [http://localhost:5000](http://localhost:5000)
+
+---
 
 
-## 📦 Server-Side Dependencies
+## 🧪 Troubleshooting
 
-```json
-{
-  "cors": "^2.8.5",
-  "dotenv": "^17.2.0",
-  "express": "^5.1.0",
-  "firebase-admin": "^13.4.0",
-  "mongodb": "^6.17.0"
-}
+* **MongoDB connection error** → Check `MONGODB_URI` and whitelist IPs on MongoDB Atlas.
+* **Stripe payment failing** → Ensure you’re using **test API keys** and correct webhook setup.
+* **Firebase auth error** → Verify your Firebase credentials and domain whitelist.
+* **CORS errors** → Check backend CORS settings.
+
+---
+
+## 🌐 Live Links
+
+* **Frontend:** [https://red--aid.web.app/](https://red--aid.web.app/)
+* **Backend:** [https://redaid-server.vercel.app/](https://redaid-server.vercel.app/)
+
+---
+
+## 📜 License
+
+This project is licensed under the **MIT License** — feel free to use and adapt it.
+
+
+Here’s what you’ll still need to do before committing it:
+1. **Replace** `./assets/banner.png` and `./assets/screenshot.png` with actual files in your repo.  
+2. Add real environment variables in `.env` (not committed).  
+3. Update `<your-username>` and `<repo-name>` in the clone URL.  
+
+---
+
+## ⚙️ Environment Variables
+
+Create `.env` files in both client and server folders.
+
+### server/.env.example
+
+```env
+PORT=5000
+MONGODB_URI=your_mongodb_connection_string
+FIREBASE_SERVICE_ACCOUNT_JSON=./serviceAccountKey.json
+```
+
+### client/.env.example
+
+```env
+VITE_FIREBASE_API_KEY=...
+VITE_FIREBASE_AUTH_DOMAIN=...
+VITE_FIREBASE_PROJECT_ID=...
+VITE_FIREBASE_STORAGE_BUCKET=...
+VITE_FIREBASE_MESSAGING_SENDER_ID=...
+VITE_FIREBASE_APP_ID=...
+```
+
+---
+
+## ▶️ Run Locally
+
+1. **Clone repository**
+
+```bash
+git clone https://github.com/<your-username>/<repo-name>.git
+cd <repo-name>
+```
+
+2. **Setup Backend**
+
+```bash
+cd server
+cp .env.example .env
+# Fill in environment variables
+npm install
+npm run dev
+```
+
+3. **Setup Frontend**
+
+```bash
+cd ../client
+cp .env.example .env
+# Fill in environment variables
+npm install
+npm run dev
+```
+
+4. **Access app**
+
+* Frontend: [http://localhost:5173](http://localhost:5173) (Vite)
+* Backend API: [http://localhost:5000](http://localhost:5000)
+
+---
+
+## 🧪 Troubleshooting
+
+* **MongoDB Connection Error:** Verify `MONGODB_URI` and network access on Atlas
+* **Firebase Authentication Issues:** Check Firebase config and domain whitelist
+* **CORS Errors:** Confirm backend CORS settings
+* **Server Startup Fails:** Verify environment variables and dependencies
+
+---
+
+## 🌐 Live Links
+
+* Frontend: [https://true-review-3d3e3.web.app](https://true-review-3d3e3.web.app)
+* Backend: [https://true-review-server.vercel.app](https://true-review-server.vercel.app)
+
+---
+
+## 📜 License
+
+Licensed under the **MIT License** – feel free to use and adapt.
+
+---
+
+Let me know if you want me to generate this in markdown file format or add anything else!

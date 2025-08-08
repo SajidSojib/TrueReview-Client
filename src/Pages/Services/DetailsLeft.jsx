@@ -41,7 +41,7 @@ const DetailsLeft = ({ data, reviewData }) => {
 
   return (
     <div>
-      <div className="max-w-lg bg-info px-10 py-8 rounded-lg text-base-300">
+      <div className="max-w-lg bg-info px-5 scale-95 sm:scale-100 sm:px-10 py-8 rounded-lg text-base-300">
         <div className="space-y-4">
           <div className="space-y-2">
             <img

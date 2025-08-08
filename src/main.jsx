@@ -16,7 +16,7 @@ import PrivateRoute from "./Firebase/PrivateRoute";
 import Details from "./Pages/Services/Details";
 import { HelmetProvider } from "react-helmet-async";
 import Error from "./Layout/Error";
-
+import "react-toastify/dist/ReactToastify.css";
 const router = createBrowserRouter([
   {
     path: "/",

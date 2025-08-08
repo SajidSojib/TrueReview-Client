@@ -72,7 +72,7 @@ const Home = () => {
         setLoading5(false);
       })
       .catch((err) => {
-        toast.error(err);
+        toast.error(err); 
       });
   }, []);
 

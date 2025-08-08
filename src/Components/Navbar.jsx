@@ -7,7 +7,7 @@ import { AuthContext } from "../Firebase/AuthProvider";
 import Swal from "sweetalert2";
 import { BarLoader } from "react-spinners";
 
-const Navbar = () => {
+const Navbar = () => { 
   const { user, logOut,setLoading,loading } = useContext(AuthContext);
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
