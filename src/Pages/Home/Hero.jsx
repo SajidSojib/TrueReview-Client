@@ -15,17 +15,6 @@ const Hero = ({ slideData }) => {
   return (
     <div className="px-4 py-16 mt-12 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20 rounded-2xl ">
       <Swiper
-        // grabCursor={true}
-        // effect={"creative"}
-        // creativeEffect={{
-        //   prev: {
-        //     shadow: true,
-        //     translate: [0, 0, -400],
-        //   },
-        //   next: {
-        //     translate: ["100%", 0, 0],
-        //   },
-        // }}
         spaceBetween={30}
         centeredSlides={true}
         loop={true}
@@ -36,14 +25,18 @@ const Hero = ({ slideData }) => {
         pagination={{
           clickable: true,
         }}
-        navigation={true}
+        // navigation={true}
+        navigation={{
+          nextEl: ".custom-next",
+          prevEl: ".custom-prev",
+        }}
         modules={[Autoplay, Pagination, Navigation]}
         className="mySwiper"
       >
         {slideData?.map((data) => (
           <SwiperSlide key={data?.id}>
             <div
-              className="bg-cover rounded-2xl"
+              className="bg-cover rounded-2xl "
               style={{ backgroundImage: `url(${data?.image})` }}
             >
               <div className="py-44 space-y-3 bg-gradient-to-t from-[#e2141410] via-[#0f0f0fa1] to-[#0f0f0fde] text-base-300">
@@ -73,6 +66,12 @@ const Hero = ({ slideData }) => {
             </div>
           </SwiperSlide>
         ))}
+        <div className="custom-prev absolute left-2 top-1/2 text-xl -translate-y-1/2 bg-primary p-2 rounded-full text-error cursor-pointer z-10">
+          ◀
+        </div>
+        <div className="custom-next absolute right-2 top-1/2 text-xl -translate-y-1/2 bg-primary p-2 rounded-full text-error cursor-pointer z-10">
+          ▶
+        </div>
       </Swiper>
     </div>
   );
