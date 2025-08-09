@@ -220,9 +220,10 @@ const Navbar = () => {
         <>
           <li>
             <img
-              className="w-12 h-12 p-1 rounded-full ring-2 ring-gray-300 dark:ring-gray-500"
+              className="w-12 h-12 p-1 rounded-full ring-2 ring-primary"
               src={user?.photoURL}
               alt="Bordered avatar"
+              referrerPolicy="no-referrer"
             />
           </li>
           <li>

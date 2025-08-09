@@ -8,6 +8,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import Stats from "./Stats";
 import { Helmet } from "react-helmet-async";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 const Home = () => {
   const [slideData, setSlideData] = useState([]);
@@ -48,22 +49,22 @@ const Home = () => {
 
   const [services, setServices] = useState([]);
   const [loading4, setLoading4] = useState(true);
+  const axiosPublic = useAxiosPublic();
 
   useEffect(() => {
-    axios
-      .get("https://true-review-server.vercel.app/limitedServices")
+    axiosPublic('/limitedServices')
       .then((res) => {
         setServices(res.data);
         setLoading4(false);
       })
       .catch((err) => {
         toast.error(err);
-      });
+      })
+    
   }, []);
 
   const [count, setCount] = useState(0);
   const [loading5, setLoading5] = useState(true);
-
   useEffect(() => {
     axios
       .get("https://true-review-server.vercel.app/count")

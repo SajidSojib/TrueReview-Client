@@ -16,61 +16,47 @@ const Feature = ({services}) => {
           top-rated, and trusted by our users—designed to help you find the
           right solution faster and with confidence.
         </p>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {services?.map((service, index) => (
-          <motion.div
-            key={service._id}
-            initial={{ scale: 0.5, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{
-              duration: (index + 1) * 0.125,
-              delay: (index + 1) * 0.1,
-              ease: easeInOut,
-            }}
-          >
-            <div className="card border-2 border-accent bg-info shadow-sm hover:shadow-lg shadow-accent">
-              <figure>
-                <img
-                  className="w-full object-cover h-[262px]"
-                  src={service.photo}
-                  alt="Service"
-                />
-              </figure>
-              <div className="card-body relative">
-                <p className="badge badge-soft badge-lg badge-primary text-[#684ecf] bg-[#e2dff3] absolute -top-3 right-5">
-                  {service.category}
-                </p>
-                <h2 className="card-title text-base-300">{service.title}</h2>
-                <p className="text-base-200">{service.description}</p>
-                <p className="text-base-200 flex items-center gap-1">
-                  <span className="text-lg">
-                    <RiMoneyDollarCircleFill color="green" size={22} />
-                  </span>
-                  <span>
-                    <span className="font-semibold">Price:</span>{" "}
-                    {service.price}
-                  </span>
-                </p>
-                <p className="text-base-200 flex items-center gap-1">
-                  <span className="text-lg">
-                    <FcCalendar size={22} />
-                  </span>
-                  <span>
-                    <span className="font-semibold">Posted on:</span>{" "}
-                    {service.addedDate.split(" at")[0]}
-                  </span>
-                </p>
-                <div className="card-actions justify-end">
-                  <Link to={`/services/${service._id}`}>
-                    <button className="btn btn-primary text-error">
-                      See Details
-                    </button>
-                  </Link>
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8">
+          {services?.map((service, index) => (
+            <motion.div
+              key={service._id}
+              initial={{ scale: 0.5, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{
+                duration: (index + 1) * 0.125,
+                delay: (index + 1) * 0.1,
+                ease: easeInOut,
+              }}
+            >
+              <div className="card border-2 min-h-[415px] md:min-h-auto xl:min-h-[400px] flex flex-col lg:flex-row xl:flex-col border-accent bg-info shadow-sm hover:shadow-lg shadow-accent">
+                <figure>
+                  <img
+                    className="w-full lg:w-96 xl:w-full lg:rounded-bl-md xl:rounded-bl-none object-cover h-48 lg:h-52 xl:h-48"
+                    src={service.photo}
+                    alt="Service"
+                  />
+                </figure>
+                <div className="card-body lg:h-52 xl:h-auto xl:pb-6 w-full h-full relative flex flex-col justify-between">
+                  <p className="badge badge-soft badge-md badge-primary text-[#684ecf] bg-[#e2dff3] absolute -top-3 right-5">
+                    {service.category}
+                  </p>
+                    <h2 className={`card-title text-base text-base-300 line-clamp-1`}>
+                      {service.title}
+                    </h2>
+                    <p className="text-base-200 text-md h-fit">
+                      {service.description}
+                    </p>
+                  <div className="card-actions justify-end">
+                    <Link to={`/services/${service._id}`}>
+                      <button className="btn btn-primary  text-error">
+                        See Details
+                      </button>
+                    </Link>
+                  </div>
                 </div>
               </div>
-            </div>
-          </motion.div>
-        ))}
+            </motion.div>
+          ))}
         </div>
       </div>
     );

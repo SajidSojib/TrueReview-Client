@@ -11,17 +11,17 @@
     "id": 2,
     "route": "/addService",
     "title": "Share Your Service",
-    "subtitle": "Have something valuable to offer? Add your own service to our platform and connect with users who need what you provide.",
+    "subtitle": "Do you have something valuable to offer? Add your own service to our platform and connect with users who need what you provide.",
     "buttonText": "Add Your Service",
-    "image": "https://i.ibb.co/gL9k1zpX/services2-Large.jpg"
+    "image": "https://i.ibb.co/LDd0Rw4x/service3-Large.jpg"
   },
   {
     "id": 3,
     "route": "/myServices",
     "title": "Manage Your Listings",
-    "subtitle": "Easily keep track of the services you’ve listed. Edit details, respond to feedback, and stay on top of your offerings.",
+    "subtitle": "Easily keep track of the services you’ve listed on our platform. Edit details, respond to feedback, and stay on top of your offerings.",
     "buttonText": "My Services",
-    "image": "https://i.ibb.co/LDd0Rw4x/service3-Large.jpg"
+    "image": "https://i.ibb.co/gL9k1zpX/services2-Large.jpg"
   },
   {
     "id": 4,
