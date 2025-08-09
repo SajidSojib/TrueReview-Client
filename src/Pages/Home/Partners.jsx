@@ -3,7 +3,8 @@ import Marquee from "react-fast-marquee";
 import { Link } from 'react-router';
 const Partners = ({partnerData}) => {
     return (
-      <div className="mt-5">
+      // <div className="py-16">
+      <div className="mb-24">
         <h2 className="text-3xl text-center font-bold mb-4 text-base-300">
           Meet Our Partners
         </h2>
@@ -14,12 +15,12 @@ const Partners = ({partnerData}) => {
           <Marquee
             play={1}
             speed={70}
-            className='py-8'
+            className='pt-8 py-5'
             pauseOnHover={false}
             loop={0}
           >
             {partnerData?.map((partner) => (
-              <div className="bg-info mr-10 shadow-lg hover:scale-105 duration-300 w-96  rounded-2xl overflow-hidden hover:shadow-xl transition p-6 group h-full flex flex-col justify-between">
+              <div className="bg-info mr-10 shadow-lg hover:scale-105 duration-300 w-96  rounded-2xl overflow-hidden hover:shadow-xl transition p-6 group h-auto flex flex-col justify-between">
                 <div>
                   <img
                     src={partner.logo}

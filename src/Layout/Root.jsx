@@ -11,7 +11,7 @@ const Root = () => {
 
   return ( 
     <div className="overflow-x-hidden xl:overflow-visible min-h-screen bg-error">
-      <header className="bg-warning fixed w-full z-50 top-0">
+      <header className="bg-warning border-1 border-accent fixed w-full z-50 top-0">
         <Navbar></Navbar>
       </header>
 

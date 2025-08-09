@@ -3,8 +3,9 @@ import Lottie from "lottie-react";
 import faqLottie from "../../assets/faq-lottie.json";
 const Faq = ({ questions }) => {
   return (
-    <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20 rounded-2xl ">
-      <h1 className="text-4xl mt-12 mb-12 font-bold text-center text-base-300">
+    // <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20 rounded-2xl ">
+    <div className="px-4 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 mb-24 rounded-2xl ">
+      <h1 className="text-3xl mt-0 mb-12 font-bold text-center text-base-300">
         Frequently Asked Questions
       </h1>
 
