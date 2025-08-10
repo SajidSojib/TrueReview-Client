@@ -2,17 +2,20 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Service from "./Service";
 import { Helmet } from "react-helmet-async";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 const Services = () => {
   const [services, setServices] = useState([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
   const [filterParam, setFilterParam] = useState("");
+  const [sortPrice, setSortPrice] = useState("");
+  const axiosPublic = useAxiosPublic();
 
   useEffect(() => {
-    axios
+    axiosPublic
       .get(
-        `https://true-review-server.vercel.app/services?search=${search}&filterParam=${filterParam}`
+        `/services?search=${search}&filterParam=${filterParam}&sortPrice=${sortPrice}`
       )
       .then((res) => {
         setServices(res.data);
@@ -21,7 +24,7 @@ const Services = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, [search, filterParam]);
+  }, [search, filterParam, sortPrice, axiosPublic]);
 
   if (loading) {
     return (
@@ -65,9 +68,22 @@ const Services = () => {
           <input
             onChange={(e) => setSearch(e.target.value)}
             type="search"
-            placeholder="Search"
+            placeholder="Search by Title, Price, Category, Company Name"
           />
         </label>
+
+        <select
+          onChange={(e) => setSortPrice(e.target.value)}
+          defaultValue=""
+          className="select flex-1 w-full select-primary border-none bg-info shadow-sm shadow-primary placeholder:text-base-200"
+        >
+          <option disabled={true}>
+            Sort by Price
+          </option>
+          <option value="">Default</option>
+          <option value="asc">Price {"(Low>High)"}</option>
+          <option value="desc">Price {"(High>Low)"}</option>
+        </select>
 
         {/*  */}
         <select
@@ -97,7 +113,7 @@ const Services = () => {
 
       {/* <hr className="border-2 my-5 border-primary"/> */}
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8">
         {services?.map((service, index) => (
           <Service key={service._id} service={service} index={index}></Service>
         ))}

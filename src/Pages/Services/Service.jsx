@@ -1,31 +1,40 @@
-import React from 'react';
+import React from "react";
 import { RiMoneyDollarCircleFill } from "react-icons/ri";
 import { FcCalendar } from "react-icons/fc";
-import { Link } from 'react-router';
+import { Link } from "react-router";
 // eslint-disable-next-line no-unused-vars
 import { easeInOut, motion } from "framer-motion";
 import { MdOutlineWork } from "react-icons/md";
-const Service = ({service, index}) => {
-    return (
-      <motion.div
-        initial={{ scale: 0.5, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ duration: (index + 1) * 0.125, delay: (index + 1) * 0.1, ease: easeInOut }}
-      >
-        <div className="card border-2 border-accent bg-info shadow-sm hover:shadow-lg shadow-accent">
-          <figure>
-            <img
-              className="w-full object-cover h-[262px]"
-              src={service.photo}
-              alt="Service"
-            />
-          </figure>
-          <div className="card-body relative">
-            <p className="badge badge-soft badge-lg badge-primary text-[#684ecf] bg-[#e2dff3] absolute -top-3 right-5">
-              {service.category}
-            </p>
-            <h2 className="card-title text-base-300">{service.title}</h2>
-            <p className="text-base-200">{service.description}</p>
+const Service = ({ service, index }) => {
+  return (
+    <motion.div
+      key={service._id}
+      initial={{ scale: 0.5, opacity: 0 }}
+      animate={{ scale: 1, opacity: 1 }}
+      transition={{
+        duration: (index + 1) * 0.125,
+        delay: (index + 1) * 0.1,
+        ease: easeInOut,
+      }}
+    >
+      <div className="card border-2 min-h-[415px] md:min-h-auto xl:min-h-[440px] flex flex-col lg:flex-row xl:flex-col border-accent bg-info shadow-sm hover:shadow-lg shadow-accent">
+        <figure>
+          <img
+            className="w-full lg:w-96 xl:w-full lg:rounded-bl-md xl:rounded-bl-none object-cover h-48 lg:h-60 xl:h-48"
+            src={service.photo}
+            alt="Service"
+          />
+        </figure>
+        <div className="card-body lg:h-60 xl:h-auto xl:pb-6 w-full h-full relative flex flex-col justify-between">
+          <p className="badge badge-soft badge-md badge-primary text-[#684ecf] bg-[#e2dff3] absolute -top-3 right-5">
+            {service.category}
+          </p>
+          <h2 className={`card-title text-base text-base-300 line-clamp-1`}>
+            {service.title}
+          </h2>
+          <p className="text-base-200 text-md h-fit">{service.description}</p>
+
+          <div>
             <p className="text-base-200 flex items-center gap-1">
               <span className="text-lg">
                 <RiMoneyDollarCircleFill color="green" size={22} />
@@ -36,13 +45,14 @@ const Service = ({service, index}) => {
             </p>
             <p className="text-base-200 flex items-center gap-1">
               <span className="text-lg">
-                <MdOutlineWork size={22} color='#f59e0b'></MdOutlineWork>
+                <MdOutlineWork size={22} color="#f59e0b"></MdOutlineWork>
               </span>
               <span>
-                <span className="font-semibold">Company:</span> {service.company}
+                <span className="font-semibold">Company:</span>{" "}
+                {service.company}
               </span>
             </p>
-            <p className="text-base-200 flex items-center gap-1">
+            {/* <p className="text-base-200 flex items-center gap-1">
               <span className="text-lg">
                 <FcCalendar size={22} />
               </span>
@@ -50,16 +60,20 @@ const Service = ({service, index}) => {
                 <span className="font-semibold">Posted on:</span>{" "}
                 {service.addedDate.split(" at")[0]}
               </span>
-            </p>
-            <div className="card-actions justify-end">
-              <Link to={`/services/${service._id}`}>
-                <button className="btn btn-primary text-error">See Details</button>
-              </Link>
-            </div>
+            </p> */}
+          </div>
+          <div className="card-actions justify-end">
+            <Link to={`/services/${service._id}`}>
+              <button className="btn btn-primary  text-error">
+                See Details
+              </button>
+            </Link>
           </div>
         </div>
-      </motion.div>
-    );
+      </div>
+    </motion.div>
+  );
 };
+
 
 export default Service;
