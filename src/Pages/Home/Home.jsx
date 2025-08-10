@@ -67,7 +67,7 @@ const Home = () => {
   const [loading5, setLoading5] = useState(true);
   useEffect(() => {
     axios
-      .get("http://localhost:9000/count")
+      .get("https://true-review-server.vercel.app/count")
       .then((res) => {
         setCount(res.data);
         setLoading5(false);

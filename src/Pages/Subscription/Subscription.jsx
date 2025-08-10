@@ -1,13 +1,16 @@
 import React from 'react';
 import { useEffect } from 'react';
+import { useContext } from 'react';
 import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { IoCheckmarkDoneCircle } from 'react-icons/io5';
 import { toast } from 'react-toastify';
+import { AuthContext } from '../../Firebase/AuthProvider';
 
 const Subscription = () => {
     const [premiumData, setPremiumData] = useState([]);
     const [loading, setLoading] = useState(false);
+    const {user} = useContext(AuthContext);
 
     useEffect(() => {
       fetch("/subscription.json")
@@ -17,6 +20,14 @@ const Subscription = () => {
           setLoading(false);
         });
     }, []);
+
+    const handleSubscribe = () => {
+        if(!user){
+            toast.error("Please login first to access premium services");
+            return;
+        }
+      toast.success("You are subscribed successfully");
+    };
 
     if(loading){
         <div className="flex items-center justify-center min-h-[calc(100vh-400px)]">
@@ -77,7 +88,7 @@ const Subscription = () => {
                   <div className="bg-info rounded-lg p-4">
                     <div className="mb-4 text-center">
                       <div className="flex border-b-2 border-dashed border-b-primary items-center justify-between mb-5">
-                        <p className="mb-2 text-3xl font-semibold text-primary">
+                        <p className="mb-2 text-2xl font-semibold text-primary">
                           {data.highlight}
                         </p>
                         <p className="text-xl font-medium tracking-wide text-primary">
@@ -85,7 +96,7 @@ const Subscription = () => {
                         </p>
                       </div>
                       <div className="flex my-9 items-center justify-center">
-                        <p className="mr-2 text-5xl font-semibold text-primary lg:text-6xl">
+                        <p className="mr-2 text-5xl font-semibold text-primary lg:text-5xl">
                           ${data.price}
                         </p>
                         <p className="text-lg text-gray-500">/ month</p>
@@ -108,7 +119,7 @@ const Subscription = () => {
 
                     <div className="flex justify-center">
                       <button
-                        onClick={() => toast.success(data.buttonMessage)}
+                        onClick={handleSubscribe}
                         className="btn btn-primary text-error btn-wide"
                       >
                         {data.buttonLabel}
