@@ -26,6 +26,8 @@ const DetailsRight = ({ data, reviewData, setReviewData }) => {
     const formData = {
       serviceId: data._id,
       serviceTitle: data.title,
+      servicePrice: data.price,
+      serviceCompany: data.company,
       name: user.displayName,
       email: user.email,
       photo: user.photoURL,

@@ -89,7 +89,7 @@ const MyServices = () => {
   }
 
   return (
-    <div className="px-4 py-16 mt-12 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
+    <div className="px-4 pt-16 mt-12 mb-24 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:pt-20">
       <Helmet>
         <title>My Services | TrueReview</title>
       </Helmet>
@@ -105,7 +105,7 @@ const MyServices = () => {
         <div className="overflow-x-auto rounded-box border border-base-content/5 bg-base-100">
           <table className="table bg-info">
             {/* head */}
-            <thead className="bg-blue-600 text-white">
+            <thead className="bg-primary text-white">
               <tr>
                 <th>#</th>
                 <th>Service Title</th>
@@ -116,6 +116,13 @@ const MyServices = () => {
               </tr>
             </thead>
             <tbody className="">
+              {services.length === 0 && (
+                <tr>
+                  <td colSpan={6} className="text-center">
+                    No Services Found
+                  </td>
+                </tr>
+              )}
               {services.map((service, index) => (
                 <tr key={service._id} className="hover:bg-accent">
                   <th>{index + 1}</th>

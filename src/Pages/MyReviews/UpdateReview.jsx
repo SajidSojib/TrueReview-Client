@@ -4,46 +4,69 @@ import { Rating } from "@smastrom/react-rating";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { toast } from "react-toastify";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const updatedReview = ({ reviews, setReviews, updatedReview }) => {
   const { user, logOut } = useContext(AuthContext);
   const [star, setStar] = useState(updatedReview?.rating);
+  const axiosSecure = useAxiosSecure();
 
   const handleSubmit = (event) => {
     event.preventDefault();
     const rating = star;
     const review = event.target.review.value;
+    
+    axiosSecure.patch(`/reviews/${updatedReview._id}`, {
+      rating,
+      review,
+    })
+    .then((res) => {
+      if (res.data.modifiedCount > 0) {
+        updatedReview.rating = star;
+        updatedReview.review = review;
+        setReviews(
+          reviews.map((s) =>
+            s._id === updatedReview._id ? updatedReview : s
+          )
+        );
 
-    axios
-      .patch(
-        `https://true-review-server.vercel.app/reviews/${updatedReview._id}`,
-        {
-          rating,
-          review,
-        },
-        {
-          headers: {
-            authorization: `Bearer ${user.accessToken}`,
-          },
-        }
-      )
-      .then((res) => {
-        if (res.data.modifiedCount > 0) {
-          updatedReview.rating = star;
-          updatedReview.review = review;
-          setReviews(
-            reviews.map((s) =>
-              s._id === updatedReview._id ? updatedReview : s
-            )
-          );
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Review updated successfully",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+    // axios
+    //   .patch(
+    //     `http://localhost:9000/reviews/${updatedReview._id}`,
+    //     {
+    //       rating,
+    //       review,
+    //     },
+    //     {
+    //       headers: {
+    //         authorization: `Bearer ${user.accessToken}`,
+    //       },
+    //     }
+    //   )
+    //   .then((res) => {
+    //     if (res.data.modifiedCount > 0) {
+    //       updatedReview.rating = star;
+    //       updatedReview.review = review;
+    //       setReviews(
+    //         reviews.map((s) =>
+    //           s._id === updatedReview._id ? updatedReview : s
+    //         )
+    //       );
 
-          Swal.fire({
-            position: "center",
-            icon: "success",
-            title: "Service updated successfully",
-            showConfirmButton: false,
-            timer: 1500,
-          });
+    //       Swal.fire({
+    //         position: "center",
+    //         icon: "success",
+    //         title: "Service updated successfully",
+    //         showConfirmButton: false,
+    //         timer: 1500,
+    //       });
 
           const modal = document.getElementById("my_modal_3");
           if (modal) {

@@ -4,10 +4,11 @@ import axios from "axios";
 import { Rating } from "@smastrom/react-rating";
 import { toast } from "react-toastify";
 import { FiEdit3 } from "react-icons/fi";
-import { MdOutlineDeleteForever } from "react-icons/md";
+import { MdOutlineDeleteForever, MdOutlineWork } from "react-icons/md";
 import Swal from "sweetalert2";
 import UpdateReview from "./UpdateReview";
 import { Helmet } from "react-helmet-async";
+import { RiMoneyDollarCircleFill } from "react-icons/ri";
 
 const MyReviews = () => {
   const { user, logOut } = use(AuthContext);
@@ -84,7 +85,7 @@ const MyReviews = () => {
         });
     },
     [user?.email],
-    reviews.length
+    // reviews.length
   );
 
   if (loading) {
@@ -96,7 +97,7 @@ const MyReviews = () => {
   }
 
   return (
-    <div className="px-4 py-16 mt-12 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
+    <div className="px-4 pt-16 mt-12 mb-24 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:pt-20">
       <Helmet>
         <title>My Reviews | TrueReview</title>
       </Helmet>
@@ -109,89 +110,98 @@ const MyReviews = () => {
       </p>
 
       <div className="space-y-6">
-        {reviews?.map((review) => (
-          <article
-            key={review?._id}
-            className="bg-info relative shadow-lg shadow-accent p-6 rounded-2xl max-w-4xl mx-auto"
-          >
-            <div className="absolute right-4 top-2 space-x-2">
-              <button
-                onClick={() => handleUpdate(review)}
-                className="btn btn-sm btn-circle bg-accent border-none hover:bg-primary hover:text-white"
-              >
-                <FiEdit3 size={22} />
-              </button>
-              <button
-                onClick={() => handleDelete(review)}
-                className="btn btn-sm btn-circle bg-accent border-none hover:bg-red-600 hover:text-white"
-              >
-                <MdOutlineDeleteForever size={22} />
-              </button>
-            </div>
-            <div className="flex items-center mb-4">
-              <img
-                className="w-10 h-10 me-4 rounded-full"
-                src={review?.photo}
-                alt=""
-              />
-              <div className="font-bold text-base-300">
-                <p>
-                  {review?.name}{" "}
-                  <time
-                    datetime={review?.time}
-                    className="block text-sm text-base-200"
-                  >
-                    {review?.time}
-                  </time>
-                </p>
-              </div>
-            </div>
-            <div className="flex items-center mb-1 space-x-1 rtl:space-x-reverse">
-              <h3 className="ms-2 text-sm font-semibold text-base-300">
-                Rating:
-              </h3>
-              <Rating
-                style={{ maxWidth: 90 }}
-                value={review?.rating}
-                readOnly
-              />
-            </div>
+        {reviews?.length === 0 && (
+          <div className="space-y-3 bg-info p-24 rounded-2xl">
+            <h1 className="text-2xl font-bold text-center text-base-300">
+              No Review Found!
+            </h1>
+          </div>
+        )}
 
-            <p className="mb-2 text-base-200">{review?.review}</p>
-            <a
-              href="#"
-              className="block mb-5 text-sm font-medium text-blue-600 hover:underline dark:text-blue-500"
+        <div className="grid gap-6 xl:grid-cols-2">
+          {reviews?.map((review,i) => (
+            <article
+              key={review?._id}
+              className={`bg-info relative shadow-lg shadow-accent p-6 w-full  justify-between rounded-2xl mx-auto ${reviews.length%2 == 1 && i==reviews.length-1 ? 'xl:col-span-2 w-full' : 'xl:col-span-1 xl:w-xl'}`}
             >
-              Read more
-            </a>
-            <aside>
-              <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
-                {helpful} people found this review helpful
-              </p>
-              <div className="flex items-center mt-3">
+              <div className="absolute right-4 top-2 space-x-2">
                 <button
-                  className="btn btn-primary btn-sm"
-                  onClick={() => {
-                    setHelpful(helpful + 1);
-                    toast.success("Thanks for your feedback");
-                  }}
+                  onClick={() => handleUpdate(review)}
+                  className="btn btn-sm btn-circle bg-accent border-none hover:bg-primary hover:text-white"
                 >
-                  Helpful
+                  <FiEdit3 size={22} />
                 </button>
                 <button
-                  onClick={() => {
-                    toast.error(
-                      "Thanks for your feedback. We will look into it"
-                    );
-                  }}
-                  className="ps-4 text-sm font-medium text-blue-600 hover:underline dark:text-blue-500 border-gray-200 ms-4 border-s md:mb-0 dark:border-gray-600"
+                  onClick={() => handleDelete(review)}
+                  className="btn btn-sm btn-circle bg-accent border-none hover:bg-red-600 hover:text-white"
                 >
-                  Report abuse
+                  <MdOutlineDeleteForever size={22} />
                 </button>
               </div>
-            </aside>
-          </article>
-        ))}
+
+              <div className="flex items-center mb-4">
+                <img
+                  className="w-10 h-10 me-4 rounded-full"
+                  src={review?.photo}
+                  alt=""
+                />
+                <div className="font-bold text-base-300">
+                  <p>
+                    {review?.name}{" "}
+                    <time
+                      datetime={review?.time}
+                      className="block text-sm text-base-200"
+                    >
+                      {review?.time}
+                    </time>
+                  </p>
+                </div>
+              </div>
+              <div className="flex items-center mb-1 space-x-1 rtl:space-x-reverse">
+                <h3 className="ms-2 text-sm font-semibold text-base-300">
+                  Rating:
+                </h3>
+                <Rating
+                  style={{ maxWidth: 90 }}
+                  value={review?.rating}
+                  readOnly
+                />
+              </div>
+
+              <p className="mb-2 text-base-200">{review?.review}</p>
+
+              <p className="text-xs text-base-200 mt-4">Review on <span className="font-semibold">{review.serviceTitle}</span></p>
+              <p className="text-xs text-base-200 mb-2">By <span className="font-semibold">{review.serviceCompany}</span> Company</p>
+
+              <aside>
+                <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
+                  {helpful} people found this review helpful
+                </p>
+                <div className="flex items-center mt-3">
+                  <button
+                    className="btn btn-primary btn-sm"
+                    onClick={() => {
+                      setHelpful(helpful + 1);
+                      toast.success("Thanks for your feedback");
+                    }}
+                  >
+                    Helpful
+                  </button>
+                  <button
+                    onClick={() => {
+                      toast.error(
+                        "Thanks for your feedback. We will look into it"
+                      );
+                    }}
+                    className="ps-4 btn-sm font-medium btn btn-outline btn-primary  ms-4 border-s md:mb-0"
+                  >
+                    Report abuse
+                  </button>
+                </div>
+              </aside>
+            </article>
+          ))}
+        </div>
       </div>
       <dialog id="my_modal_3" className="modal">
         <div className="modal-box p-0 max-w-2xl">
