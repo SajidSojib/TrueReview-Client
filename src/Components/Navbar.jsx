@@ -100,6 +100,25 @@ const Navbar = () => {
           Services
         </NavLink>
       </li>
+      <li
+        data-aos="fade-down"
+        data-aos-duration="800"
+        data-aos-easing="ease-in-out"
+        data-aos-once="true"
+      >
+        <NavLink
+          to={"/subscription"}
+          aria-label="Subscription"
+          title="Subsciption"
+          className={({ isActive }) =>
+            isActive
+              ? "p-2 block lg:p-0 font-medium tracking-wide transition-colors underline underline-offset-4 decoration-2 decoration-primary"
+              : "p-2 block lg:p-0 font-medium tracking-wide transition-colors duration-200"
+          }
+        >
+          Subscription
+        </NavLink>
+      </li>
 
       {/* <div className="flex gap-6">
         {loading
@@ -121,7 +140,7 @@ const Navbar = () => {
         <>
           <li
             data-aos="fade-down"
-            data-aos-duration="800"
+            data-aos-duration="1000"
             data-aos-easing="ease-in-out"
             data-aos-once="true"
           >
@@ -140,7 +159,7 @@ const Navbar = () => {
           </li>
           <li
             data-aos="fade-down"
-            data-aos-duration="1000"
+            data-aos-duration="1200"
             data-aos-easing="ease-in-out"
             data-aos-once="true"
           >
@@ -159,7 +178,7 @@ const Navbar = () => {
           </li>
           <li
             data-aos="fade-down"
-            data-aos-duration="1200"
+            data-aos-duration="1400"
             data-aos-easing="ease-in-out"
             data-aos-once="true"
           >

@@ -17,6 +17,7 @@ import Details from "./Pages/Services/Details";
 import { HelmetProvider } from "react-helmet-async";
 import Error from "./Layout/Error";
 import "react-toastify/dist/ReactToastify.css";
+import Subscription from "./Pages/Subscription/Subscription";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
             <AddService></AddService>
           </PrivateRoute>
         ),
+      },
+      {
+        path: "/Subscription",
+        element: <Subscription></Subscription>
       },
       {
         path: "/myServices",

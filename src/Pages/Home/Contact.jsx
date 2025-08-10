@@ -5,7 +5,7 @@ import contactLottie from "../../assets/contact-lottie.json";
 const Contact = () => {
     return (
       // <div className="py-16 mx-auto lg:py-20 lg:pt-18 rounded-2xl ">
-      <div className=" mx-auto mb-24 rounded-2xl ">
+      <div id='contact' className=" mx-auto mb-24 rounded-2xl ">
         <section className="">
           <h2 className="text-3xl font-bold text-base-300 text-center mb-4">
             Need Help?

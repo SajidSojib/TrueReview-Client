@@ -1,0 +1,61 @@
+[
+  {
+    "id": 1,
+    "name": "Free",
+    "price": 0,
+    "currency": "USD",
+    "highlight": "Starter Plan",
+    "buttonLabel": "Continue Free",
+    "buttonMessage": "You're on the Basic Plan – Start listing your services for free!",
+    "maxServices": 1,
+    "integratedPayments": false,
+    "features": [
+      "List 1 service",
+      "Manual payment handling",
+      "Contact info displayed to customers",
+      "Basic profile page"
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Pro",
+    "price": 49,
+    "highlight": "Best Value",
+    "buttonLabel": "Upgrade to Pro",
+    "currency": "USD",
+    "maxServices": 10,
+    "buttonMessage": "Welcome to Pro! You've unlocked exclusive features and seamless payments.",
+    "integratedPayments": true,
+    "features": [
+      "List up to 10 services",
+      "Integrated Stripe payments",
+      "No direct contact info shown (in-app messaging)",
+      "Priority search placement",
+      "Basic analytics dashboard",
+      "Access to customer reviews & ratings"
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Elite",
+    "price": 149,
+    "currency": "USD",
+    "buttonLabel": "Go Elite",
+    "maxServices": 50,
+    "integratedPayments": true,
+    "buttonMessage": "🎉 Elite Access Activated! Enjoy VIP perks and a premium listing experience.",
+    "highlight": "Growing Business",
+    "features": [
+      "List up to 50 services",
+      "Integrated Stripe payments in website",
+      "Advanced analytics & reports",
+      "Featured on homepage",
+      "Priority search placement",
+      "Custom branding for service pages",
+      "Dedicated account manager",
+      "Bulk service upload",
+      "Early access to new features",
+      "Advanced SEO optimization"
+    ]
+  }
+]
