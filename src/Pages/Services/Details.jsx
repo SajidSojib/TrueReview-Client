@@ -48,19 +48,19 @@ const Details = () => {
   }
 
   return (
-    <div className="px-4 py-16 mt-12 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20 rounded-2xl flex flex-col gap-4 lg:flex-row ">
+    <div className="px-4 p6-16 mb-24 mt-12 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:pt-20 rounded-2xl flex flex-col gap-0 lg:gap-20 lg:flex-row ">
       {/* left sidebar for details */}
       <Helmet>
         <title>Details | True Review</title>
       </Helmet>
-      <div className="mx-auto">
+      <div className="mx-auto flex-2 mt-3 mb-24 lg:mb-0">
         <div className="sticky top-32">
           <DetailsLeft data={data} reviewData={reviewData}></DetailsLeft>
         </div>
       </div>
 
       {/* right reviews */}
-      <div className="">
+      <div className="flex-3">
         <DetailsRight
           data={data}
           reviewData={reviewData}

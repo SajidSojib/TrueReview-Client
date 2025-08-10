@@ -57,7 +57,7 @@ const DetailsRight = ({ data, reviewData, setReviewData }) => {
       });
   };
   return (
-    <div className="text-base-300 mt-8 xl:mt-0">
+    <div className="text-base-300 lg:mt-8 xl:mt-0">
       <h1 className="text-3xl font-bold text-center">
         Service Overview & Reviews
       </h1>
@@ -70,7 +70,7 @@ const DetailsRight = ({ data, reviewData, setReviewData }) => {
         {reviewData?.map((rev, i) => (
           <div
             key={i}
-            className="container flex flex-col w-full max-w-xl p-6 mx-auto divide-y bg-info rounded-md dark:divide-gray-300dark:text-gray-800"
+            className="container flex flex-col w-full  p-6 mx-auto divide-y bg-info rounded-md dark:divide-gray-300dark:text-gray-800"
           >
             <div className="flex justify-between p-4">
               <div className="flex space-x-4">
@@ -83,10 +83,10 @@ const DetailsRight = ({ data, reviewData, setReviewData }) => {
                 </div>
                 <div>
                   <h4 className="font-bold">{rev.name}</h4>
-                  <span className="text-xs dark:text-gray-600">{rev.time}</span>
+                  <span className="text-xs text-base-200">{rev.time}</span>
                 </div>
               </div>
-              <div className="flex items-center space-x-2 dark:text-yellow-700">
+              <div className="flex items-center space-x-2 dark:text-yellow-400">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 512 512"
@@ -97,7 +97,7 @@ const DetailsRight = ({ data, reviewData, setReviewData }) => {
                 <span className="text-xl font-bold">{rev.rating}</span>
               </div>
             </div>
-            <div className="p-4 space-y-2 text-sm dark:text-gray-600">
+            <div className="p-4 space-y-2 text-sm text-base-200">
               <p>{rev.review}</p>
             </div>
           </div>
@@ -106,7 +106,7 @@ const DetailsRight = ({ data, reviewData, setReviewData }) => {
 
       <form
         onSubmit={handleReview}
-        className="bg-error pt-6 pb-2 z-20 sticky bottom-0 max-w-xl w-full mx-auto"
+        className="bg-error pt-6 pb-2 z-20 sticky bottom-0 w-full mx-auto"
       >
         <fieldset className="fieldset border-base-300 rounded-box">
           <legend className="fieldset-legend">
