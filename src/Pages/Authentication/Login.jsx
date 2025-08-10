@@ -4,7 +4,8 @@ import { AuthContext } from "../../Firebase/AuthProvider";
 import Swal from "sweetalert2";
 import { toast } from "react-toastify";
 import { Helmet } from "react-helmet-async";
-
+import loginLottie from "../../assets/loginLottie.json";
+import Lottie from "lottie-react";
 const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -54,10 +55,23 @@ const Login = () => {
       });
   };
   return (
-    <div data-aos="zoom-in-up" className="mt-14 pt-2">
-      <Helmet><title>Login | TrueReview</title></Helmet>
-      <div className="relative mx-auto max-w-md px-8 pt-10 pb-8 mt-10 bg-info text-base-300 rounded-xl shadow-2xl p-7 sm:p-10">
-        <h3 className="mb-4 text-xl font-semibold sm:text-center sm:mb-6 sm:text-2xl">
+    <div
+      data-aos="zoom-in-up"
+      className=" flex flex-col items-center lg:flex-row px-4 pt-16 mt-12 mb-24 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:pt-20"
+    >
+      <Helmet>
+        <title>Login | TrueReview</title>
+      </Helmet>
+
+      <Lottie
+        className="w-3/4 lg:w-full flex-4 mx-auto"
+        style={{ filter: "hue-rotate(20deg)" }}
+        animationData={loginLottie}
+        loop={true}
+      />
+
+      <div className="relative flex-5 mx-auto w-full px-8 pt-10 pb-8 bg-info text-base-300 rounded-lg shadow-lg p-7 sm:p-10">
+        <h3 className="mb-4 text-3xl font-semibold sm:text-center sm:mb-6 ">
           Login Now
         </h3>
         <form onSubmit={handleSubmit}>
@@ -69,7 +83,7 @@ const Login = () => {
               placeholder="Enter Email"
               required
               type="text"
-              className="flex-grow w-full h-12 px-4 mb-2 transition duration-200 border border-gray-300 rounded shadow-sm focus:border-primary focus:outline-none focus:shadow-outline"
+              className="flex-grow w-full h-12 px-4 mb-2 transition duration-200 border border-gray-300 rounded shadow-sm placeholder:text-base-200 focus:border-primary focus:outline-none focus:shadow-outline"
               id="email"
               name="email"
             />
@@ -82,7 +96,7 @@ const Login = () => {
               placeholder="Enter Password"
               required
               type="password"
-              className="flex-grow w-full h-12 px-4 mb-2 transition duration-200 border border-gray-300 rounded shadow-sm focus:border-primary focus:outline-none focus:shadow-outline"
+              className="flex-grow w-full h-12 px-4 mb-2 transition placeholder:text-base-200 duration-200 border border-gray-300 rounded shadow-sm focus:border-primary focus:outline-none focus:shadow-outline"
               id="password"
               name="password"
             />
@@ -95,7 +109,10 @@ const Login = () => {
               Login
             </button>
             <div className="divider divider-accent">OR</div>
-            <button onClick={handleGoogleLogin} className="btn w-full cursor-pointer bg-white text-black border-[#e5e5e5]">
+            <button
+              onClick={handleGoogleLogin}
+              className="btn w-full cursor-pointer bg-white text-black border-[#e5e5e5]"
+            >
               <svg
                 aria-label="Google logo"
                 width="16"
@@ -126,7 +143,7 @@ const Login = () => {
               Login with Google
             </button>
           </div>
-          <p className="text-xs text-base-200 sm:text-sm">
+          <p className="text-xs text-base-200 text-center sm:text-sm">
             Don't have an account?{" "}
             <span
               onClick={() => navigate("/register")}

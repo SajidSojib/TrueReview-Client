@@ -52,6 +52,7 @@ const DetailsRight = ({ data, reviewData, setReviewData }) => {
           toast.success("Review added successfully");
           formData._id = res.data.insertedId;
           setReviewData([formData, ...reviewData]);
+          e.target.reset();
         }
       })
       .catch((err) => {

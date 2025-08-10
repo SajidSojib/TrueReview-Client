@@ -6,6 +6,8 @@ import { auth } from "../../../firebase.init";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
 import { Helmet } from "react-helmet-async";
+import registerPng from "../../assets/regPng.png";
+import Lottie from "lottie-react";
 
 const Register = () => {
     const navigate = useNavigate();
@@ -74,10 +76,19 @@ const Register = () => {
     
   };
   return (
-    <div data-aos="zoom-in-up" className="mt-14 pt-2">
-      <Helmet><title>Register | TrueReview</title></Helmet>
-      <div className="relative mx-auto max-w-md px-8 pt-10 pb-8 mt-10 bg-info text-base-300 rounded-xl shadow-2xl p-7 sm:p-10">
-        <h3 className="mb-4 text-xl font-semibold sm:text-center sm:mb-6 sm:text-2xl">
+    <div
+      data-aos="zoom-in-up"
+      className="px-4 pt-16 mt-12 mb-24 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:pt-20 flex flex-col lg:flex-row items-center"
+    >
+      <Helmet>
+        <title>Register | TrueReview</title>
+      </Helmet>
+
+      <div className="flex-3">
+        <img src={registerPng} alt="" />
+      </div>
+      <div className="relative flex-2 mx-auto w-full px-8 pt-10 pb-8 bg-info text-base-300 rounded-lg shadow-lg p-7 sm:p-10">
+        <h3 className="mb-4 text-3xl font-semibold sm:text-center sm:mb-6">
           Register Now
         </h3>
         <form onSubmit={handleSubmit}>
@@ -89,7 +100,7 @@ const Register = () => {
               placeholder="Enter Name"
               required
               type="text"
-              className="flex-grow w-full h-12 px-4 mb-2 transition duration-200 border border-gray-300 rounded shadow-sm focus:border-primary focus:outline-none focus:shadow-outline"
+              className="flex-grow w-full h-12 px-4 mb-2 transition duration-200 border border-gray-300 rounded shadow-sm placeholder:text-base-200 focus:border-primary focus:outline-none focus:shadow-outline"
               id="name"
               name="name"
             />
@@ -102,7 +113,7 @@ const Register = () => {
               placeholder="Enter Email"
               required
               type="text"
-              className="flex-grow w-full h-12 px-4 mb-2 transition duration-200 border border-gray-300 rounded shadow-sm focus:border-primary focus:outline-none focus:shadow-outline"
+              className="flex-grow placeholder:text-base-200 w-full h-12 px-4 mb-2 transition duration-200 border border-gray-300 rounded shadow-sm focus:border-primary focus:outline-none focus:shadow-outline"
               id="email"
               name="email"
             />
@@ -115,7 +126,7 @@ const Register = () => {
               placeholder="Enter Password"
               required
               type="password"
-              className="flex-grow w-full h-12 px-4 mb-2 transition duration-200 border border-gray-300 rounded shadow-sm focus:border-primary focus:outline-none focus:shadow-outline"
+              className="flex-grow placeholder:text-base-200 w-full h-12 px-4 mb-2 transition duration-200 border border-gray-300 rounded shadow-sm focus:border-primary focus:outline-none focus:shadow-outline"
               id="password"
               name="password"
             />
@@ -127,7 +138,7 @@ const Register = () => {
             <input
               placeholder="Enter Photo URL"
               type="url"
-              className="flex-grow w-full h-12 px-4 mb-2 transition duration-200 border border-gray-300 rounded shadow-sm focus:border-primary focus:outline-none focus:shadow-outline"
+              className="flex-grow placeholder:text-base-200 w-full h-12 px-4 mb-2 transition duration-200 border border-gray-300 rounded shadow-sm focus:border-primary focus:outline-none focus:shadow-outline"
               id="photo"
               name="photo"
             />
@@ -174,7 +185,7 @@ const Register = () => {
               Register with Google
             </button>
           </div>
-          <p className="text-xs text-base-200 sm:text-sm">
+          <p className="text-xs text-base-200 text-center sm:text-sm">
             Already have an account?{" "}
             <span
               onClick={() => navigate("/login")}

@@ -127,13 +127,13 @@ const MyReviews = () => {
               <div className="absolute right-4 top-2 space-x-2">
                 <button
                   onClick={() => handleUpdate(review)}
-                  className="btn btn-sm btn-circle bg-accent border-none hover:bg-primary hover:text-white"
+                  className="btn btn-sm btn-circle btn-outline btn-primary hover:text-white"
                 >
                   <FiEdit3 size={22} />
                 </button>
                 <button
                   onClick={() => handleDelete(review)}
-                  className="btn btn-sm btn-circle bg-accent border-none hover:bg-red-600 hover:text-white"
+                  className="btn btn-sm btn-circle btn-outline border-red-500 text-red-500 hover:bg-red-500 hover:text-white"
                 >
                   <MdOutlineDeleteForever size={22} />
                 </button>
@@ -170,34 +170,14 @@ const MyReviews = () => {
 
               <p className="mb-2 text-base-200">{review?.review}</p>
 
-              <p className="text-xs text-base-200 mt-4">Review on <span className="font-semibold">{review.serviceTitle}</span></p>
-              <p className="text-xs text-base-200 mb-2">By <span className="font-semibold">{review.serviceCompany}</span> Company</p>
+              <p className="text-xs text-base-200 mt-4">Review on <span className="font-semibold text-base-300">{review.serviceTitle}</span></p>
+              <p className="text-xs text-base-200 mb-2">By <span className="font-semibold text-base-300">{review.serviceCompany}</span> Company</p>
 
               <aside>
-                <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
+                <p className="mt-1 text-xs text-base-200">
                   {helpful} people found this review helpful
                 </p>
-                <div className="flex items-center mt-3">
-                  <button
-                    className="btn btn-primary btn-sm"
-                    onClick={() => {
-                      setHelpful(helpful + 1);
-                      toast.success("Thanks for your feedback");
-                    }}
-                  >
-                    Helpful
-                  </button>
-                  <button
-                    onClick={() => {
-                      toast.error(
-                        "Thanks for your feedback. We will look into it"
-                      );
-                    }}
-                    className="ps-4 btn-sm font-medium btn btn-outline btn-primary  ms-4 border-s md:mb-0"
-                  >
-                    Report abuse
-                  </button>
-                </div>
+                
               </aside>
             </article>
           ))}
